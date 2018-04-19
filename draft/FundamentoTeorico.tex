@@ -1,0 +1,197 @@
+\chapter{Fundamento Teórico}
+
+\section{Estado del Arte}
+A pesar de ser un campo relativamente nuevo, la Ciencia de Datos está profundamente sustentada por la teoría académica (quizás por sus implicaciones como campo multidisciplinario y su importancia para la solución de problemas que impactan otras disciplinas).
+
+De acuerdo a la bibliogarfía existente, la primera persona en hacer un bosquejo de la idea fue el académico Danés Peter Naur en su libro “Concise Survery of Computer Methods”. Naur sin embargo utiliza el término más que nada para sustituir el de ciencia computacional \cite{naur}. El investigador de Laboratorios Bell y profesor de la Universidad de Princeton, John Tukey, hace un mejor acercamiento al escribir el primer artículo científico sobre como la disciplina de la estadística cambiaba con el advenimiento de la informática \cite{tukey}. Mucho más tarde fue el estadista de la Universidad de Tokio Chikio Hayashi quien definiría de manera sucinta el concepto de Ciencia de Datos como un concepto sintético para unificar la estadística, el análisis de datos y los métodos relacionados con la consecución lo resultados \cite{hayashi}.
+
+Es interesante que los métodos de aprendizaje automatizado proliferaron de forma paralela al concepto de ciencia de datos, y solo fueron absorbidos por esta en los últimos diez años. Alpaydim nos describe el aprendizaje automatizado como la programación de computadoras para optimizar un criterio de desempeño utilizando datos o experiencia pasada \cite{alpaydin}. Tom Mitchell respeta este concepto al describir el aprendizaje automatizado como “… la construcción de programas computacionales que aprenden con la experiencia…” \cite[pag. XV]{mitchell}. Solo Peter Harrington utiliza una descripción mucho más simplista al determinar que “El aprendizaje automatizado es la extracción de información de la data.” \cite[pag. 5]{harrington}.
+
+La teoría detrás de la regresión lineal es bastante homogénea a través de todos los autores. Zumel y Mount describen la regresión lineal como el más común de los métodos de aprendizaje automatizado \cite{zumelMount}, y si no, es muy fácil verificar cual otro método probar como segunda opción. Para Daroczi, el énfasis está en los modelos de regresión multivariable (una extensión de la regresión lineal simple de un solo predictor y resultado) que construyen el camino para la predicción de fenómenos complejos en la naturaleza y negocios \cite{daroczi}. Por su parte, Harrington resume los beneficios de la regresión lineal \cite{harrington} por la facilidad de interpretar los resultados y lo frugal en el uso de ciclos de computación (aunque puede ser menos útil si el fenómeno no es perfectamente lineal).
+ 
+Muchos autores han escrito sobre las series de tiempo, pero es difícil agregar al tema o discutir las ideas del profesor Robert Hyndman, uno de los expertos más respetados en la comunidad de la estadística por su trabajo en las series de tiempo. Hyndman extiende la teoría a las series de tiempo como elementos de pronóstico y su relación con la regresión lineal \cite{hyndman}. Desde el punto de vista técnico, Hyndman es el creador de varias bibliotecas de funciones de pronóstico utilizando series de tiempo y ARIMA en lenguaje R. Dentro de la bibliografía, Daroczi es quien agrega detalles sobre la detección temprana de valores atípicos que pueden dificultar – y mucho – el análisis \cite{daroczi}. Un componente importante de las series de datos es la detección de si son o no auto-regresivas (lo que determina mucho de su poder predictivo). La fórmula para la detección de series auto-regresivas es el test Dickey-Fuller, y la mejor bibliografía es el artículo científico escrito por ambos profesores en la revista especializada Econometrica (Dickey, D., y Fuller, W., 1981). A pesar de ser un artículo contemporáneo, la teoría detrás de la prueba Dickey-Fuller nos permite descartar series de tiempo no-regresivas con poco poder de predicción.
+ 
+El uso de modelos ensamblados es en cierta forma la prueba final de la hipótesis de trabajo: la utilización de dos modelos entrecruzados cuyos resultados conforman una tabla temporal de valores esperados de los cuales se genera un nuevo modelo sintético de predicción más general y con mayor capacidad de predicción en juegos de datos de validación cruzada. Este concepto es novel; Witten y Frank lo describen como combinación de métodos múltiples, y escriben: “… un enfoque obvio para hacer mejores decisiones es tomar el resultado de diferentes métodos y combinarlos…” (Witten, I. y Frank, E., 2005). Zhou nos describe que “… los modelos ensamblados que entrenan múltiples variables y luego las combinan para uso de entrenamiento, con el Boosting y el Bagging como representantes principales, representan lo más novedoso en el estado del arte de la ciencia de datos…” (Zhou, Z., 2012, pg. VII). De una manera un tanto más coloquial, Zhang y Ma describen el uso de modelos ensamblados con una analogía de la vida real, en la cual los pacientes buscan una segunda y hasta tercera opinión de expertos antes de someterse a una operación complicada (Zhang, C. Y Ma, Y., 2012). Curiosamente tanto Zhang, Ma y Zhou hablan de la combinación de métodos de regresión general con clasificadores, y solo Witten y Frank hablan de otras combinaciones (por supuesto, Witten y Frank comenzaban a escribir en los albores del ensamblaje de métodos, cuando los clasificadores no estaban tan de moda porque el análisis era mayoritariamente de números, algo que cambió con el avance de las redes sociales).
+
+En su libro “Crisis Cambiarias en Países Emergentes” el Dr. Bernardo Carriello utiliza un modelo de descripción (más que de predicción) de corrida de las tasas de cambios, en el cual los regresores incluían variables de medición económicos como crédito privado como porcentaje del PIB, tasa de variación de reservas, desalineación de tipo real, y otros (Carriello, B., 2010). Carriello utiliza muchísimo modelos lineales dicotómicos que modelan los escenarios con variables binarias (algo muy común entre los economistas) que por lo general favorecen regresiones logísticas o con la utilización de variables dummy o comodín (se multiplican por el coeficiente uno o cero según tengan o no valor). La mayoría de la bibliografía de aprendizaje automatizado y ciencias de datos prefieren el estudio de variables continuas y reales con amplitud de rango y valores, algo que está más cerca de la disciplina de la bioestadística que de la economía. Una pregunta adicional válida es si tomar metodologías más cercanas a la bioestadística se aplica para la predicción financiera mejor que los modelos dicotómicos actuales.
+ 
+Volviendo a la pregunta mayor de área, el autor y antiguo Ministro de Economía de Colombia, Alfonso Ortega Cárdenas, menciona como material de bibliografía universitaria, la re-valorización del dólar frente al peso colombiano tras el comienzo de la caída de los precios del petróleo a partir del año 2015 (Cárdenas, A., 2016). El Dr. Cárdenas no hace mucho hincapié en la correlación de ambas variables, y prefiere ahondar en temas macro-económicos como la variación de la tasa de interés como elemento de presión en la tasa cambiaria y las leyes de ingreso de capital extranjero. Pero es claro que el efecto de las fuentes de ingreso del petróleo como variable clave en el valor final de la TRM ya han sido definidas – si bien algo ligeramente – como claves en un libro de texto de economía de Colombia. ¿Hay elementos adicionales que indiquen la importancia de otras fuentes de ingresos como posibles modeladores y variables de predicción de la TRM? Si los hay, y aparecen en la misma bibliografía de Cárdenas quien describe en detalle a) el sector petrolero, b) el sector siderúrgico, c) el carbón, y d) el níquel.
+ 
+Los investigadores Mehreen Rehman, Gul Muhammad Khan y Sahibzada Ali Mahmud han utilizado la ciencia de datos para la predicción de FOREX. Los autores utilizan CGP (Programación Genética Cartesiana), una extensión del uso de redes neuronales, para obtener predicciones del dólar australiano con 98.72\% de precisión por períodos extendidos de hasta 1,000 días (Rehman, M., Khan, G. y Mahmud, S., 2014). Los autores alimentan el sistema CGP con información histórica de las monedas en cuestión compuesta por 500 días de cotización.
+ 
+Quizás menos conocido es el uso de clasificadores versus regresores. Este camino toma el estudio de los doctores Hossein Talebi, Winsor Hoang y Marina Gavrilova. En su investigación en búsqueda de la mejora de sistemas automatizados de corretaje de FOREX utilizando aprendizaje automatizado, los autores proponen un nuevo método de clasificación. Dicho método utiliza extracción de clasificadores de múltiples escalas para el entrenamiento de datos, y luego se ensamblan diferentes clasificadores por voto Bayes (Talebi, H., Hoang, y Gavrilova, M., 2014). El método propuesto demuestra superioridad a la hora de ensamblar clasificadores por encima de clasificadores individuales.
+ 
+Otro estudio interesante es el de los profesores de matemática de la universidad de Beijing Lean Yu, Shouyang Wang, y K. K. Lai. El enfoque es novedoso en el sentido que utilizan un sistema ensamblado de auto-regresión lineal generalizada (GLAR) con redes neuronales artificiales (ANN). Los autores llegan a la conclusión que los resultados en las predicciones son superiores a los resultados de las predicciones de los métodos por separado, o de métodos similares con regresiones lineales (Yu, L., Wang, S., Lai, K., 2005). Una lectura cuidadosa de los resultados evidencia márgenes de error del 1.56% al 3.57%, dependiendo de la moneda a evaluar.
+
+\section{Marco Teórico}
+
+\subsection{La Economía de Colombia}
+TO DO: compĺetar
+
+\subsection{La Ciencia de Datos}
+TO DO: compĺetar
+
+\subsection{El Aprendizaje Automatizado}
+TO DO: compĺetar
+
+\subsection{Regresión Lineal}
+TO DO: compĺetar
+
+\subsection{Las Series de Tiempo}
+TO DO: compĺetar
+
+\subsection{Los Modelos Ensamblados}
+TO DO: compĺetar
+
+\section{Marco Conceptual}
+La TRM representa un ejemplo perfecto de series de tiempo con marcada tendencia secular y estacionalidad. Pudiéramos en cualquier caso utilizar métodos de pronóstico de series de tiempo como ARIMA para entonces estimar el valor futuro de la TRM. Sin embargo, esta estimación tendría como único elemento de referencia el valor de la TRM en diferentes puntos del tiempo. Estaríamos resolviendo el problema haciendo caso omiso de las diferentes variables exógenas que intervienen en la economía mundial y de Colombia, y que juntas definen a través de la ley de oferta y demanda el valor final de la TRM.
+ 
+En dicho caso, el uso de regresión lineal y regresión multivariable nos permite justamente crear un modelo de pronóstico basado en regresores relacionados con la variable independiente que a su vez son variables exógenas. A través de la creación de dicho modelo la predicción se hace sin tomar en cuenta que la TRM es una serie de tiempo y puede aportar en su descomposición factores importantes tales como la estacionalidad de la tendencia.
+ 
+Si partimos del hecho de que la TRM es una serie de tiempos y puede ser estudiada como tal, y que además los diferentes rubros de exportación de la economía de Colombia aportan divisas que a través de la ley de oferta y demanda regulan en el mercado sus precios, es una admisión de que existen variables relacionadas, aunque exógenas que rigen el comportamiento de la TRM además de sus tendencias seculares y estacionalidad.
+ 
+Es válido, si partimos de ambos supuestos y los tomamos como ciertos, pensar que puede existir un modelo híbrido de pronóstico que tome en consideración ambos eventos. Hay claras sinergias entre las exportaciones de Colombia, fuentes de ingresos de divisas, que se manifiestan en indicios de comportamiento de cotización de mercado. Hay claras manifestaciones en la estacionalidad y tendencia de una serie de tiempos representativa de la TRM. Ambas metodologías de pronóstico son el reflejo de la realidad económica modelados de diferentes maneras.
+ 
+La Ciencia de Datos utiliza el aprendizaje automatizado como forma de llegar a modelos complejos de clasificación y estimación. Es aprendizaje automatizado porque los datos son los que se entrenan y definen el modelo, no el científico. Si existen sinergias fuertes el modelo cobra vida de forma automática. Inclusive el aprendizaje automatizado prevé la existencia de modelos ensamblados, justamente para aumentar la capacidad de estimación cuando un fenómeno puede ser modelado mejor como una sumatoria de clasificadores y/o regresores que por un solo método. Por lo tanto, es plausible obtener un modelo de predicción de la TRM generado por el aprendizaje automatizado de series de tiempo y regresión multivariable en un solo método híbrido y ensamblado que parta desde:
+ 
+\begin{itemize}
+\item el uso de los valores de la TRM como serie de tiempo,
+\item y los valores de la TRM y los diferentes rubros mayores que componen la canasta de exportación de Colombia como una estructura de datos para el análisis de regresión multivariable.
+\end{itemize}
+
+¿Cómo podemos predecir la TRM para mitigar el efecto negativo de las fluctuaciones en la tasa de cambio en la contabilidad de precios y costos?
+
+La hipótesis de trabajo para resolver dicha pregunta postula un modelo basado en los principales rubros de exportación de Colombia diseñado con Machine Learning de los mismos datos:
+\begin{itemize}
+\item Existen una cantidad finita - e inferior a la decena - de productos de exportación que fungen como variables de agregación al producto bruto interno de Colombia y que son necesarias para la consecución de un modelo predictivo parsimonioso de la TRM.
+\item El valor de la TRM, tal cual lo ja la Superintendencia Financiera de Colombia, no es sino el reflejo de los movimientos de estas variables de aportación que ayudan a modelar y controlar la tasa de cambio.
+\item El comportamiento pasado de dichas variables puede ser utilizado para entrenar y generar un modelo estadístico predictivo parsimonioso utilizando aprendizaje automatizado cuyo margen de error sea inferior al 5\% (o, en otros términos, p < 0,05).
+\item El modelo final no es único sino es el resultado del ensamblaje de varios modelos matemáticos predictivos y dinámico en su concepción ya que puede ser afectado por la acumulación de nuevos datos de retroalimentación a posteriori 
+\end{itemize}
+
+En términos formales:
+
+\[ p^{c}(x) = (p^{c}(c_{1} \mid x),p^{c}(c_{2} \mid x)) \]
+
+Donde:
+
+\[ c_{1} : f(y) = \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2} + \cdots + \beta_{n}x_{n} + \epsilon \]
+\[ c_{2} : f(y_{t}) = \beta_{0} + \beta_{1}x_{t-1} + \beta_{2}x_{t-2} + \cdots + \beta_{n}x_{t-n} + \epsilon_{t}\]
+
+En términos coloquiales, el modelo de predicción está determinado por el ensamblaje acumulado de dos clasificadores (ambos regresores), un modelo de regresión lineal y otro de pronóstico ARIMA.
+
+La hipótesis de trabajo propuesta tiene marcada diferencias con los trabajos de otros investigadores en el área de predicción del FOREX. 
+
+\begin{itemize}
+\item Los investigadores Mehreen Rehman, Gul Muhammad Khan y Sahibzada Ali Mahmud han utilizado la ciencia de datos para la predicción de FOREX. Los autores utilizan CGP (Programación Genética Cartesiana), una extensión del uso de redes neuronales, para obtener predicciones del dólar australiano (Rehman, M., Khan, G. y Mahmud, S., 2014). Este modelo se alimenta exclusivamente de datos históricos de la cotizaciones de la moneda y no tiene datos de variables exógenas como los regresores propuestos de los rubros de exportación de Colombia. 
+\item El estudio de los doctores Hossein Talebi, Winsor Hoang y Marina Gavrilova busca la mejora de sistemas automatizados de corretaje de FOREX. Los autores proponen un nuevo método de clasificación con extracción de clasificadores de múltiples escalas para el entrenamiento de datos, y luego se ensamblan diferentes clasificadores por voto Bayes (Talebi, H., Hoang, y Gavrilova, M., 2014). El trabajo tiene en cuenta el uso de métodos ensamblados pero utiliza como clasificadores pares de cotizaciones de monedas (por ejemplo el par COP:USD) las cuales pueden pensarse como un ensamble de dos series de tiempo sin uso de variables exógenas. 
+\item Los profesores de matemática de la universidad de Beijing Lean Yu, Shouyang Wang, y K. K. Lai usan un enfoque novedoso en el sentido que utilizan un sistema ensamblado de auto-regresión lineal generalizada (GLAR) con redes neuronales artificiales (ANN). Este estudio es similar a la propuesta de esta investigación pero sigue alimentando el sistema solo con series de tiempo.  
+\end{itemize}
+
+Los autores que ya han utilizado aprendizaje automatizado y métodos ensamblados todos recurren al uso de series de tiempo como entradas, sin que ninguno se haya preguntado si existen sinergias adicionales en el concepto de valorización del FOREX. El problema ha sido estudiado con mucho detenimiento desde el punto de vista del aprendizaje automatizado puro pero no desde el punto de vista macro económico y comercial. La hipótesis de trabajo se basa en la observación de que son las exportaciones las que regulan el precio de la TRM y pueden aportar un elemento de agregado de precisión al modelo predictivo si se combina con el modelo entrenado de series de datos. El papel del aprendizaje automatizado es justamente este: entrenar un modelo que minimiza el error de predicción en base a una gran cantidad de datos y facilitar el análisis estadístico del modelo predictivo en aras de lograr un modelo de producción que pueda ser utilizado con facilidad todos los días, varias veces al día de ser necesario, o inclusive miles de veces al día en un sistema automatizado de FOREX. 
+
+\subsection{Definiciones}
+La siguiente es una lista de definiciones específicas que atañen a el proyecto de investigación.
+ 
+\textbf{Aprendizaje automatizado}: Uno de los primeros autores sobre aprendizaje automatizado, Tom Mitchell \cite{mitchell} describe el campo del aprendizaje automatizado como aquel que se encarga de estudiar cómo construir programas que automáticamente mejoren con la experiencia. Mitchell expone una descripción abstracta, la cual no vemos en ninguna otra bibliografía que lo procede, estipulando como definición que un programa de computación se dice que aprende de la experiencia E con respecto a algún juego de tareas T y la medida de desempeño P, si su desempeño en las tareas T, con respecto a la medición de P, mejora con el uso de la experiencia E.
+ 
+El autor Peter Harrington \cite{harrington} nos describe el aprendizaje automatizado como la conversión de datos en información. Para Harrington, el aprendizaje automatizado está en la intersección de las disciplinas de la estadística, ingeniería, y ciencia de la computación. Los autores y profesores Shai \cite{shaiShai} definen el término aprendizaje automatizado como la detección automática de patrones significativos en un juego de datos. Los autores agregan que las herramientas de aprendizaje automatizado están orientadas a fortalecer programas con la habilidad de aprender y adaptar.
+ 
+Una definición más matemática en corte nos la da el profesor Alpaydin \cite{alpaydin} quien define aprendizaje automatizado como la programación de computadoras para optimizar un criterio de desempeño utilizando datos de muestra o experiencia pasada. Bajo esta premisa, uno tiene un modelo definido hasta ciertos parámetros, y el aprendizaje es la ejecución del programa para optimizar los parámetros del modelo con los datos de entrenamiento.
+ 
+\textbf{Aprendizaje supervisado}: Para los autores Hastie, Tibshirani, y Friedman (Hastie, Tibshirani, \& Friedman, 2008) el aprendizaje supervisado intenta aprender una función f de predicción a través del uso de uso juegos de datos de entrenamiento en forma de muestras del total de los datos disponibles. El uso de datos de entrenamiento le permite al sistema aprender y minimizar el error del modelo de predicción. Harrington nos da una explicación más sencilla del término, al aclarar que (Harrington, 2012) el aprendizaje supervisado es aquel que le pide al computador aprender de los datos utilizando una variable específica como objetivo. Esto reduce la complejidad de algoritmos y patrones que se deben derivar de la muestra de datos. El profesor Alpaydin agrega que el aprendizaje supervisado tiene como objeto aprender un mapeo de los elementos de entrada a los de salida, teniendo en cuenta que los valores correctos de estos últimos están dados por el supervisor (Alpaydin, 2010).
+ 
+\textbf{ARIMA}: En estadística y econometría, en particular en series temporales, un modelo autoregresivo integrado de promedio móvil o ARIMA (acrónimo del inglés autoregressive integrated moving average) es un modelo estadístico que utiliza variaciones y regresiones de datos estadísticos con el fin de encontrar patrones para una predicción hacia el futuro. Se trata de un modelo dinámico de series temporales, es decir, las estimaciones futuras vienen explicadas por los datos del pasado y no por variables independientes (Hyndman, R., 2014).
+
+\textbf{Ciencia de datos}: Para los autores Zumel y Mount (Zumel \& Mount, 2014) es una disciplina interdisciplinaria que administra el proceso por el cual se transforma una hipótesis y datos relacionados en predicciones ejecutables. El profesor de la Universidad de Syracuse, Jeffery Stanton, define a la ciencia de datos como la disciplina emergente cuya área se enfoca en la recolección, preparación, análisis, visualización, administración y cura de grandes colecciones de información (Stanton, 2013). Stanton difiere un poco de otras definiciones académicas de la ciencia de datos, argumentando que, a diferencia de la matemática y la estadística, la ciencia de datos es una disciplina aplicada que está supeditada a aquellos problemas que presenten los usuarios de la data. Los profesores Potter, Binnig, y Upfal (Potter, Binnig, \& Upfal, 2017) para propósitos de clase, expanden la definición al proceso holístico de extraer información de los datos, incluyendo la preparación para correr un modelo, la ejecución del modelo en sí, y la comunicación de los resultados.
+ 
+Una definición algo diferente – y ciertamente mucha más matemática – es la de los autores Blum, Hopcroft y Kannan de la Universidad de Cornell (Blum, Hopcroft, \& Kannan, 2015). Para ellos la investigación en el futuro se centrará en el uso de computadoras para entender y extraer información útil de cantidades masivas de datos, provenientes de aplicaciones varias. El cambio mayor se dará de las matemáticas discretas a más énfasis en la estadística, probabilidades y métodos numéricos.
+ 
+\textbf{Coeficiente de determinación}: Mann y Lacke nos describen el coeficiente de determinación como la medida que cuantifica la proporción (o porcentaje) del total de la variación de la variable dependiente que se explica por una variable independiente dada (Mann \& Lacke, 2001). En otras palabras, trata de medir que tan bien calza el modelo de regresión al juego de datos.
+ 
+\textbf{Coeficiente de correlación de Pearson}: El coeficiente de correlación de Pearson es una medida de la relación lineal entre dos variables aleatorias cuantitativas. El Dr. Yakir lo describe como el valor entre 1 y la razón de las varianzas (Yakir, 2011).
+ 
+\textbf{Error mínimo cuadrático}: Zumel y Mount describen al error mínimo cuadrático como la raíz cuadrada del promedio cuadrado de la diferencia entre el valor estimado y el valor actual (Zumel \& Mount, 2014). Es la medida más común para evaluar la calidad de ajuste del modelo de predicción. En este caso Downey agrega que el error mínimo cuadrático es una medición más expresiva de la magnitud del error en contraposición al error promedio (Downey, 2015).
+ 
+\textbf{Entrenamiento}: El entrenamiento de datos es el proceso por el cual el modelo aprende de un juego de entrenamiento supervisado. Zumel y Mount definen el juego de datos de entrenamiento como los datos que se proveen al algoritmo de construcción del modelo para que este puede establecer correctamente los parámetros necesarios para determinar la mejor predicción de la variable dependiente (Zumel \& Mount, 2014).
+ 
+\textbf{Modelo estadístico}: Mann y Lacke (Mann \& Lacke, 2001) nos dan la primera aproximación al concepto de modelo estadístico, aclarando que es aquel en el cual la variable independiente no determina de forma exacta el valor de la variable dependiente. Downey ejemplifica el concepto de modelo como una simplificación que abstrae de los detalles innecesarios (Downey, 2015). Los modelos analíticos suavizan idiosincrasias de los datos que pueden ser no relevantes al momento del análisis a gran escala. Por eso Downey agrega que los modelos analíticos son formas de compresión de datos: cuando un modelo calza bien a un juego de datos, un pequeño juego de parámetros resume un cuerpo grande de datos de manera óptima.
+ 
+\textbf{Modelo de Regresión Lineal}: El autor Daroczi explica (Daroczi, 2015) que los modelos de regresión lineal son la norma para las técnicas de estimación y hacen un número finito de presunciones sobre las variables dependientes, independientes y la relación entre estas. Benjamín Yakir de la Universidad de Jerusalén agrega que (Yakir, 2011) es el efecto de una variable independiente dentro de la distribución de una respuesta numérica dada como una tendencia lineal. Es la respuesta promedio al fenómeno dentro de la población.
+ 
+\textbf{Parámetro}: De acuerdo a Mann y Lacke (Mann \& Lacke, 2001) un parámetro es una medida resumida, calculada de los datos de una población. El Dr. Yakir nos recuerda que un parámetro es un número que es propiedad única de una población, nunca de una muestra (Yakir, 2011).
+ 
+\textbf{Regresión}: Según Downey (Downey, 2015) la regresión es uno de varios procesos disponibles para estimar parámetros que encajan un modelo de los datos. Mann y Lacke (Mann \& Lacke, 2001) amplían un poco el concepto estableciendo que una modelo de regresión es una ecuación matemática que describe la relación entre dos variables. El Dr. Benjamin Yakir resume que una regresión no es sino la relación de diferentes variables medidas de una misma muestra (Yakir, 2011).
+ 
+\textbf{Regresión lineal}: Downey describe la regresión lineal como aquella que está basada en modelos de funciones lineales (Downey, 2015). Para Mann y Lacke (Mann \& Lacke, 2001) la regresión lineal es aquella que se da como una función lineal entre dos variables, y la cual se puede graficar en el plano cartesiano como una recta.
+ 
+\textbf{Regresión múltiple}: Para Downey (Downey, 2015), la regresión múltiple es aquella en la cual se utilizan múltiples variables independientes, pero una sola variable dependiente. El Dr. Tattar de la Universidad de Bangalore define que el modelo de regresión lineal simple no es realista ni aplicable al mundo práctico (Tattar, 2013). Para aplicaciones más reales, es casi obligatorio el uso de modelos de regresión múltiple, en los cuales varias variables independientes se conjugan como parámetros de regresión.
+ 
+\textbf{Series de Tiempo}: En forma general cualquier cosa que observamos secuencialmente en el tiempo es una serie de tiempos (Hyndman, R., 2014). La literatura académica se concentra en series de tiempo que se observan en intervalos regulares de tiempo, aunque aquellas que se observan en intervalos irregulares también existen.
+
+\textbf{Sobreajuste}: En aprendizaje automatizado, el sobreajuste (también es frecuente emplear el término en inglés overfitting) es el efecto de sobre-entrenar un algoritmo de aprendizaje con unos ciertos datos para los que se conoce el resultado deseado. Daroczi define el sobreajuste como la descripción del modelo en conjunto con el ruido aleatorio de la muestra en vez de solo el fenómeno generador de datos (Daroczi, 2015). El sobreajuste ocurre, por ejemplo, cuando el modelo tiene más predictores de los que puede acomodar la muestra de datos. Según Zumel y Mount, una de las señales de sobreajuste más sencillas de detectar se da cuando un modelo tiene un excelente desempeño en el juego de datos que se entrenó, pero uno muy malo en un juego de datos nuevo (Zumel \& Mount, 2014). Esto es causa y efecto de memorizar la data de entrenamiento en vez de aprender reglas generales de la generación del patrón.
+ 
+\textbf{Variable dependiente}: La variable dependiente es aquella que buscamos predecir o explicar (Mann \& Lacke, 2001). Downey especifica que también recibe el nombre de variable endógena (Downey, 2015).
+ 
+\textbf{Variable independiente}: Para los autores Mann y Lacke la variable independiente es la variable que se utiliza dentro de un modelo y explica la variación en la variable dependiente (Mann \& Lacke, 2001). Downey prefiere utilizar el nombre de variables explicativas o exógenas (Downey, 2015).
+
+\section{Operacionalización}
+\subsection{Introducción}
+La pregunta de investigación del proyecto se enfoca en la predicción de la TRM de Colombia:
+
+\begin{quote}
+¿Cómo podemos predecir la TRM para mitigar el efecto negativo de las fluctuaciones en la tasa de cambio en la contabilidad de precios y costos? 
+\end{quote}
+
+La hipótesis de trabajo para resolver dicha pregunta postula un modelo basado en los principales rubros de exportación de Colombia diseñado con Machine Learning de los mismos datos:
+
+\begin{itemize}
+	\item Existen una cantidad finita - e inferior a la decena - de productos de exportación que fungen como variables de agregación al producto bruto interno de Colombia y que son necesarias para la consecución de un modelo predictivo parsimonioso de la TRM.
+	\item El valor de la TRM, tal cual lo ja la Superintendencia Financiera de Colombia, no es sino el reflejo de los movimientos de estas variables de aportación que ayudan a modelar y controlar la tasa de cambio.
+	\item El comportamiento pasado de dichas variables puede ser utilizado para entrenar y generar un modelo estadístico predictivo parsimonioso utilizando aprendizaje automatizado cuyo margen de error sea inferior al 5\% (o, en otros términos, p < 0,05).
+	\item El modelo final no es único sino es el resultado del ensamblaje de varios modelos matemáticos predictivos y dinámico en su concepción ya que puede ser afectado por la acumulación de nuevos datos de retroalimentación a posteriori \emph{(N. Del A. esta hipótesis es especulativa en naturaleza, y experimentación matemática precisa es necesaria para validarla).}
+\end{itemize}
+
+En términos formales:
+
+\[ p^c (x)=(p^c (c_1 \mid x),p^c (c_2 \mid x)) \]
+
+donde:
+\begin{eqnarray*}
+c_1 : f(y)= \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_n x_n + \epsilon \\
+c_2 : f(y_t )=  \beta_0 + \beta_1 x_(t-1)+ \beta_2 x_(t-2)+ \cdots + \beta_n x_(t-n)+ \epsilon_t \\
+\end{eqnarray*}
+
+En términos coloquiales, el modelo de predicción está determinado por el ensamblaje acumulado de dos clasificadores (ambos regresores) de un modelo de regresión lineal y otro de pronóstico ARIMA. 
+
+\subsection{Operacionalización de Variables}
+El cuadro de operacionalización de variables es el siguiente:
+
+\begin{table}[]
+\centering
+\begin{tabular}
+\textbf{Objetivo}   & Predecir la tasa de cambio del dólar de Colombia                             &  \\ 
+\textbf{Variable}   & Valor futuro de la TRM                                                       &  \\
+\textbf{Definición} & Es el valor futuro de la tasa de referencia del mercado en pesos colombianos &  \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Dimensiones}  & \textbf{Indicadores}                                                                                                                                  \\ \midrule
+Petróleo              & \begin{tabular}[c]{@{}l@{}}Valor internacional\\ Coeficiente de correlación\\ Coeficiente de determinación\\ Valor p\\ Error cuadrático\end{tabular}  \\
+Carbón                & \begin{tabular}[c]{@{}l@{}}Valor internacional\\ Coeficiente de correlación\\ Coeficiente de determinación\\ Valor p\\ Error cuadrático\end{tabular}  \\
+Cafe                  & \begin{tabular}[c]{@{}l@{}}Valor internacional\\ Coeficiente de correlación\\ Coeficiente de determinación\\ Valor p\\ Error cuadrático\end{tabular}  \\
+Oro                   & \begin{tabular}[c]{@{}l@{}}Valor internacional\\ Coeficiente de correlación\\ Coeficiente de determinación\\ Valor p \\ Error cuadrático\end{tabular} \\
+Ferroniquel           & \begin{tabular}[c]{@{}l@{}}Valor internacional\\ Coeficiente de correlación\\ Coeficiente de determinación\\ Valor p \\ Error cuadrático\end{tabular} \\
+Bananas               & \begin{tabular}[c]{@{}l@{}}Valor internacional\\ Coeficiente de correlación\\ Coeficiente de determinación\\ Valor p\\ Error cuadrático\end{tabular}  \\
+Gasoleo               & \begin{tabular}[c]{@{}l@{}}Valor internacional\\ Coeficiente de correlación\\ Coeficiente de determinación\\ Valor p\\ Error cuadrático\end{tabular}  \\
+Rosas                 & \begin{tabular}[c]{@{}l@{}}Valor internacional\\ Coeficiente de correlación\\ Coeficiente de determinación\\ Valor p\\ Error cuadrático\end{tabular}  \\
+Polipropileno         & \begin{tabular}[c]{@{}l@{}}Valor internacional\\ Coeficiente de correlación\\ Coeficiente de determinación\\ Valor p\\ Error cuadrático\end{tabular}  \\
+Policloruro de vinilo & \begin{tabular}[c]{@{}l@{}}Valor internacional\\ Coeficiente de correlación\\ Coeficiente de determinación\\ Valor p\\ Error cuadrático\end{tabular}  \\ \bottomrule
+\end{tabular}
+\end{table}
