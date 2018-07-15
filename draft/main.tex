@@ -1,5 +1,7 @@
 \documentclass[letterpaper, spanish, 11pt]{report}
 %\renewcommand{\baselinestretch}{1.5}
+\usepackage{setspace}
+\usepackage[letterpaper, margin=2.5cm]{geometry}
 \usepackage[spanish]{babel}
 \usepackage{graphicx}
 \graphicspath{ {images/} }
@@ -8,6 +10,7 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage{amsmath}
+\usepackage{float}
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
@@ -23,22 +26,69 @@
   stringstyle=\color{mymauve},     % string literal style
 }
 
-%\setcounter{chapter}{1}
 \selectlanguage{spanish}
 \usepackage[utf8]{inputenc}
+\setcounter{secnumdepth}{0}
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\normalfont\bfseries}{}{0pt}{\Huge}
+\usepackage{lipsum}
+\addto\captionsspanish{\renewcommand{\bibname}{Referencias}}
+\renewcommand{\bibname}{Referencias}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{caption}
+\captionsetup{font=footnotesize}
+
+\usepackage{fancyhdr}
+\fancyhf{} % clear all header and footers
+\renewcommand{\headrulewidth}{0pt} % remove the header rule
+\rhead{\thepage}
+\pagestyle{fancy}
+
+\pagestyle{myheadings}
+\makeatletter
+\def\@oddhead{{\slshape\rightmark}\hfil\footnotesize\thepage}%
+\makeatother
 
 % new packages in Marco Teorico, please copy on total thesis work
 \usepackage{amsmath}
 \DeclareMathOperator*{\argmax}{argmax} % thin space, limits underneath in displays
 \DeclareMathOperator*{\argmin}{argmin} % thin space, limits underneath in displays
 \usepackage[hyphens,spaces]{url}
+\usepackage{listings} %For code in appendix
+\lstset
+{ %Formatting for code in appendix
+    language=R,
+    basicstyle=\footnotesize,
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=1,
+    breaklines=true,
+    breakatwhitespace=false,
+}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\pagenumbering{roman}
 
 \begin{document}
 
-%\include{ProtocoloInvestigacion}
-\include{FundamentoTeorico}
-%\include{MarcoMetodologico}
-%\include{Resultados}
+\input{portada}
+\include{resumen}
+\include{preliminares}
+\tableofcontents
+\listoffigures
+\listoftables
+\include{introduccion}
+\include{protocoloInvestigacion}
+\include{fundamentoTeorico}
+\include{marcoMetodologico}
+\include{resultados}
+\include{conclusiones}
+\include{referencias}
+\include{otrasFuentes}
+\include{anexos}
 
 \bibliographystyle{apalike}
 \pagebreak

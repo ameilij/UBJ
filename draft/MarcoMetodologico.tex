@@ -1,17 +1,32 @@
-\chapter{Marco Metodológico}
+\begin{spacing}{1.5}
+\setcounter{chapter}{2}
+\chapter{Capítulo III: \\Marco Metodológico}
+\thispagestyle{empty}
 
-\section{Tipo de Estudio}
-El tipo de estudio es hipotético deductivo, cuantitativo.
+\section{Hipótesis de Trabajo }
+Como sugiere Huertas en su escrito La Formulación de la Hipótesis (Huertas, D.P. 2002. p.10) las hipótesis se materializan luego que el investigador llega a través de la observación a una proposición inicial. La observación nos lleva a una creencia común del mercado bursátil de Colombia de que la TRM esta correlacionada al precio del barril de petróleo. Al llevar esta proposición al análisis, se nota que la correlación es real pero no completa. Hay otros elementos adicionales al precio internacional de petróleo que forman parte de un modelo predictivo, y que quizás compartan la similitud de ser variables relacionadas con los productos de mayor exportación y contribuyentes a la agregación del producto bruto interno.
 
-Es hipotético deductivo porque:
+La pregunta de investigación entonces evoluciona a la siguientes:
+
+\emph{¿Como crear un modelo predictivo de la TRM de Colombia usando Aprendizaje Automatizado basándonos en los productos de mayor contribución a la canasta del producto bruto interno?}
+
+El elemento de aprendizaje automatizado es una condición de la solución innovadora solo por un hecho. Como nos explica Prabanjhan (Narayanachar Tattar, P., (2013), R Statistical Application Development by Example, Birmingham, Inglaterra, Pack Publishing): “el aprendizaje automatizado utiliza datos estadísticos y métodos estadísticos y de computación avanzados para aprender de un juego y muestras de datos y entrenar un modelo con validación cruzada… “. A diferencia de las metodologías estadísticas anteriores donde el investigador utiliza los estudios y análisis de los datos para crear un modelo, el aprendizaje automatizado toma los datos y nos permite entrenar los datos para resolver el problema del modelo. Como los datos entrenados se validan de forma cruzada con el modelo, el modelo subsiguiente ya tiene su propio error estadístico implícitamente delimitado, lo que nos permite utilizarlo con un grado de confianza medible desde el punto de vista matemático.
+
+Utilizando técnicas de investigación exploratoria visual es evidente que solo la variable descriptora del precio internacional de petróleo no es suficiente, sino que hay otros factores que influyen en el precio de la TRM y que la mantienen de subir mucho y los efectos nefastos de la devaluación que esto acarrea. De aquí entonces nuestra hipótesis general de trabajo:
+
+\emph{El valor de la TRM se puede pronosticar a través de un modelo estadístico parsimonioso basado en los datos históricos de la valorización de los productos de mayor contribución al portafolio de exportaciones de Colombia.}
+
+\subsection{Hipótesis especificas}
+Las siguientes son hipótesis específicas de trabajo.
 
 \begin{itemize}
-\item partimos de una teoría base (macroeconomía que sustenta la tasa de cambio con la balanza de pagos y exportaciones, machine learning para deducir modelos predictivos en base a grandes muestras de datos) formulamos una hipótesis de trabajo
-\item aplicamos ciencia de datos para una recolección masiva de datos de diferentes regresores (cada uno un rubro importante de exportaciones de Colombia)
-\item Confirmamos la hipótesis al extraer un modelo predictivo estadístico  
+	\item Existen una cantidad finita - e inferior a la decena - de productos de exportación que fungen como variables de agregación al producto bruto interno de Colombia y que son necesarias para la consecución de un modelo predictivo parsimonioso de la TRM.
+	\item El valor de la TRM, tal cual lo ja la Superintendencia Financiera de Colombia, no es sino el reflejo de los movimientos de estas variables de aportación que ayudan a modelar y controlar la tasa de cambio.
+	\item El comportamiento pasado de dichas variables puede ser utilizado para entrenar y generar un modelo estadístico predictivo parsimonioso utilizando aprendizaje automatizado cuyo margen de error sea inferior al 5\% (o, en otros términos, \(p < 0.05\)).
+	\item El modelo final no es único sino es el resultado del ensamblaje de varios modelos matemáticos predictivos y dinámico en su concepción ya que puede ser afectado por la acumulación de nuevos datos de retroalimentación a posteriori (N. Del A. esta hipótesis es especulativa en naturaleza, y experimentación matemática precisa es necesaria para validarla).
 \end{itemize}
 
-\subsection{Metodología de Estudio}
+\section{Metodología de Estudio}
 Enfoque cuantitativo experimental utilizando Machine Learning.
 
 \begin{itemize}
@@ -22,9 +37,6 @@ Enfoque cuantitativo experimental utilizando Machine Learning.
 	\item 30\% datos de evaluación cruzada
 \end{itemize}
     
-\subsection{Impacto Social}
-El trabajo cumple con la dimensión de relevancia social. Ninguna empresa quiere costear sus productos por encima de los demás agentes del mercado, so pena de perder participación de mercado a sus competidores con precios más ventajosos. La capacidad de estimar a futuro el mejor pronóstico de tasa de cambio reduce el porcentaje de carga por previsión de volatilidad de moneda (también conocido en contabilidad como colchón) lo que redunda en un precio mejor para el consumidor y la sociedad en general. Al reducir las ineficiencias del cálculo de costos prediciendo de forma correcta la tasa de cambio los consumidores ganan el diferencial entre el precio pobremente estimado y un precio ajustado a las realidades del cambio futuro.
-
 \section{Descripción del Método}
 La metodología utilizada para el trabajo de investigación se apega estrictamente a la formalización de la hipótesis de trabajo:
 
@@ -37,9 +49,13 @@ Donde:
 
 Por lo tanto la metodología del estudio se puede resumir en un método ensamblado de aprendizaje automatizado resultante de la composición de dos aprendices: uno basado en un regresor lineal y el segundo basado en un pronostico ARIMA. Los valores estimados para cada caso del arreglo de datos se utilizan como variable independiente y predictor del modelo ensamblado, con la variable dependiente inmutable. El modelo ensamblado entonces se entrena nuevamente con los resultados de las predicciones contra los valores reales.   
 
-Podemos resumir el proceso con el siguiente esquema de arquitectura del modelo:\\
+Podemos resumir el proceso con el siguiente esquema de arquitectura del modelo:
 
-\includegraphics[width=\textwidth]{ArquitecturaModeloEnsamblado}\\
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=5in]{ArquitecturaModeloEnsamblado}
+    \caption{Proceso de Investigación para el Análisis del Modelo Predictivo (Fuente Propia)}
+\end{figure}
 
 Cada aprendiz es a su vez un modelo de aprendizaje automatizado con su propia metodología de investigación. 
 
@@ -83,10 +99,19 @@ Se espera del modelo final un nivel de desempeño con predicciones dentro de un 
 El modelo se considera óptimo para producción si pasa las tres pruebas de validación.  
 
 \section{Diseño de la Instrumentación}
+El diseño de la instrumentación para el trabajo de laboratorio incluirá programas de software matemático para:
+
+\begin{itemize}
+    \item Recolectar las diferentes series de tiempo que servirán como variables dependientes (valor de la TRM) e independientes (regresores tales como las cotizaciones del barril de petróleo, quintal de café, etc.)
+    \item Análisis exploratorio visual para determinar validez de los datos, muestras de autocorrelación y autocorrelación parcial a través de la prueba Dickey-Fueller
+    \item Calce de la función de regresión lineal para las variables independientes
+    \item Código para el modelo predictivo ensamblado
+\end{itemize}
+
 \subsection{Componentes de Investigación Series de Tiempo}
 Un componente de aportación es cualquier rubro que se supone se exporta desde Colombia, aporta ingresos en dólares, y por lo tanto ayuda a equilibrar la balanza de pagos y demanda demanda de divisas - y por ende la TRM. Es importante hacer un análisis de cada uno de estos que debe incluir \cite{zumelMount}:
 
-\begin{itemize}
+* \begin{itemize}
 	\item carga inicial como serie de tiempo (time series class)
 	\item start(), end()
     \item summary()
@@ -97,10 +122,7 @@ Un componente de aportación es cualquier rubro que se supone se exporta desde C
     \item prueba Dickey Fuller adf.test()
 \end{itemize}
 
-\subsection{Análisis de Componente de Aportación}
-
-\subsubsection{Carga Inicial de Datos}
-La carga inicial de datos para el precio internacional del café se hace a través del servicio web de Quandl.
+La carga inicial de datos para cualquier serie de tiempo se hace a través del servicio web de \textit{Quandl} (el siguiente ejemplo ilustrativo utiliza las cotizaciones del quintal de café).
 
 \begin{lstlisting}[language=R]
 # Load coffee prices as time series
@@ -122,7 +144,7 @@ plot.ts(coffee)
 abline(reg = lm(coffee ~ time(coffee)))
 \end{lstlisting}
 
-\includegraphics[width=\textwidth]{correlacionTiempoCafe}\\
+\includegraphics[width=\textwidth]{correlacionTiempoCafe}
 
 Otro examen necesario es el de autocorrelación y autocorrelación parcial. Ambos análisis nos permiten ver si la serie es del tipo auto-regresiva o de promedios móviles \cite{hyndman}.
 
@@ -143,7 +165,6 @@ plot(decomp)
 
 \includegraphics[width=\textwidth]{decopSTLCafe}\\
 
-\subsection{Dickey Fuller Test para Series Temporales}
 El test \emph{Dickey Fuller} \cite{dickeyfuller} es la prueba mas importante para la verificación de la estacionalidad de una serie de tiempos. La literatura recomienda altamente someter todas las pruebas de series al test \emph{Dickey Fuller} antes de proceder con otros análisis \cite{hyndman}.
 
 \begin{lstlisting}[language=R]
@@ -153,7 +174,7 @@ df$statistic
 df$p.value
 \end{lstlisting}
 
-\section{Regresión Lineal con Calce de la Función de Predicción}
+\subsection{Regresión Lineal con Calce de la Función de Predicción}
 Los modelos de regresión lineal utilizan la biblioteca \emph{Quandl} para la extracción de datos y deben hacer la transformación del arreglo de datos a una serie de tiempos. Los datos serán colapsados de forma mensual y se revisará la fórmula de la función de calce para el coeficiente de correlación y determinación \cite{narayanachar}. 
 
 \begin{lstlisting}[language=R]
@@ -230,7 +251,6 @@ finalPred <- predict(combModelFit, predDF)
 
 \section{Diseño de muestreo}
 
-\subsection{Introducción al Cálculo de la Muestra del Proyecto de Investigación}
 Inicialmente, podemos calcular el tamaño de la muestra necesaria para nuestro estudio con la fórmula (Mendenhall, W., Beaver, R. y Beaver, B., 2010):
 
 \[ n =  (N* z^2*p*q)/(E^2*(N-1)+ z^2*p*q)\]
@@ -277,10 +297,8 @@ muestra
 
 El tamaño de la muestra es 503 puntos de datos por regresor a utilizar. Sin embargo, dado que los usos de técnicas de Ciencia de Datos nos permiten acceder a la biblioteca Quandl de forma de recolectar el universo entero de datos, utilizaremos los 2,080 puntos de datos para cada regresor, trabajando de esta forma con el universo entero y no la muestra. Este es un buen ejemplo del uso de Big Data (Peng, 2014) que no solo aplica a muestras grandes de universos extensos, sino al total de la data de un universo pequeño. 
 
-\subsubsection{Observaciones Adicionales Sobre el Uso de Muestras dentro de Diseños de Investigación con Regresión Lineal}
+\subsection{Observaciones Adicionales Sobre el Uso de Muestras dentro de Diseños de Investigación con Regresión Lineal}
 No todos los autores están de acuerdo con el uso de la fórmula tradicional para el cálculo del número de muestras en un estudio de regresión lineal. William Dupont y Walton Plummer han discutido el uso de técnicas alternativas cuando los estudios (sobre todo los estudios clínicos) utilizan regresiones lineales multivariable (Dupont, W. y Plummer, W., 1998). Dichas técnicas se apoyan en la identificación de diferentes pendientes en los análisis de regresión versus el uso de coeficientes (argumentando que es más fácil comparar visualmente pendientes versus coeficientes) y el manejo del poder estadístico $1 – \beta$. Sobre este último los autores manifiestan ajustar los niveles de poder para verificar en que momento del cambio se detecta diferencias de la pendiente de una hipótesis contra su hipótesis alternativa dentro de una muestra de n pacientes. 
 
 Al momento de preparar el diseño del estudio, las herramientas de medición y la muestra, el doctorando ha decidido no profundizar más en métodos menos tradicionales de cálculo de muestras en estudios de regresión lineal, dado que en el caso específico se utilizará la totalidad del universo, haciendo el cálculo de muestra innecesario. 
-
-\section{Trabajo de campo (laboratorio)}
-
+\end{spacing}
