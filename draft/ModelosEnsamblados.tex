@@ -1,3 +1,4 @@
+\pagebreak
 \section{Modelos Ensamblados}
 El tema de modelos ensamblados es uno que por lo general se reserva más como técnica de composición que cómo teoría del aprendizaje automatizado. Los modelos ensamblados ayudan a mejorar los resultados del aprendizaje automatizado combinando diferentes modelos. Este enfoque permite la producción de mejores modelos predictivos en contraposición a la utilización de un solo modelo \cite{smolyakov}.
 
@@ -13,7 +14,6 @@ Smolyakov divide los métodos ensamblados en dos grandes clasificaciones \cite{s
   \item \textbf{Métodos Ensamblados Secuenciales:} son aquellos donde los modelos bases de aprendizaje se generan de forma secuencial. La idea inicial es que se explota la dependencia entre dichos modelos base al momento de generarlos. Un buen ejemplo de modelos ensamblados secuenciales es \emph{AdaBoost}. El desempeño de predicción o la acotación del margen de error se optimiza al calibrar los regresores y/o clasificadores después de cada entrenamiento y previo al próximo. 
   \item \textbf{Métodos Ensamblados Paralelos:} son aquellos en los cuales los modelos bases se generar en forma paralela e independiente. Un buen ejemplo de modelos ensamblados paralelos es \emph{Random Forest}. La motivación de utilizar modelos ensamblados paralelos es maximizar la independencia entre los regresores y/o clasificadores que se optimizan entre si al promediar los resultados, reduciendo el margen de error. 
 \end{itemize}
-
 
 \subsection{Diversidad}
 La diversidad de ensamblaje, o la diferencia entre diferentes métodos de aprendizaje, es un tema fundamental en el ensamblaje de métodos \cite{ensembleMethods}. Intuitivamente es fácil entender que para obtener una ventaja de la combinación, es necesario que los aprendizajes sean diferentes, de otra manera la ganancia en desempeño no seria marginalmente superior a los métodos por separado \cite{ensembleMethods}.
@@ -90,7 +90,3 @@ Cada clasificador base predice una distribución de probabilidades para un juego
 \[ p^c(x) = (p^c(c_1 \mid x), (p^c(c_2 \mid x), \ldots, (p^c(c_m \mid x)) \]
 
 donde ${c_{1}, c_{2}, \ldots, c_m}$ es el rango de posibles valores de la clase y $(p^c(c_i \mid x)$ denota la probabilidad de que dicho ejemplo $x$ pertenezca a la clase $c_i$ como lo estima (y predice) el clasificador $C$. La clase $c_j$ con la probabilidad más alta $p^C(c_j \mid x)$ se predice con el clasificador $C$. Los meta-atributos son las predicciones de probabilidades para cada clase posible según cada uno de los clasificadores base \cite{DzeroskiZenko}. 
-
-\subsection{Conclusiones sobre los Modelos Ensamblados}
-En esta sección hemos conocido el concepto de modelos ensamblados como meta-algoritmos que combinan técnicas de aprendizaje automatizado y utilizan las predicciones y/o clasificaciones de los algoritmos bases como entradas para un algoritmo de nivel superior que busca reducir la varianza, el sesgo, o mejorar la predicción. Los tres principales son el \emph{bagging}, el \emph{boosting} y el \emph{stacking}. Este último, el \emph{stacking}, será el que mayor utilizaremos en nuestro trabajo de tesis por sus bondades de reducir el error de generalización. 
-
