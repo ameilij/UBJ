@@ -36,4 +36,5 @@ for(i in 1:2922)
   {quote[i] <- last_quote}
 }
 
+qplot(x = fechas, y = quote, geom = "line", main = "Cotizacion Aceite de Palma (2010-2017)")
 # EOC
