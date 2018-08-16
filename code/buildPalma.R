@@ -37,4 +37,8 @@ for(i in 1:2922)
 }
 
 qplot(x = fechas, y = quote, geom = "line", main = "Cotizacion Aceite de Palma (2010-2017)")
+
+# Build into a time series
+palma_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
+plot(decompose(palma_ts))
 # EOC
