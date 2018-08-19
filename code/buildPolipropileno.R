@@ -20,8 +20,7 @@ Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
 polipropileno_data <- Quandl("FRED/WPU091303223")
 
 # Limpiar serie de tiempo polipropileno en su data.frame
-polipropileno <- polipropileno_data[, c(1,6)]
-polipropileno <- subset(polipropileno, polipropileno$Date > "2009-12-31")
+polipropileno <- subset(polipropileno_data, polipropileno_data$Date > "2009-12-31")
 colnames(polipropileno) <- c("Date", "polipropileno")
 
 fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")

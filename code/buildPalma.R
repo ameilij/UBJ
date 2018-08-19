@@ -41,4 +41,11 @@ qplot(x = fechas, y = quote, geom = "line", main = "Cotizacion Aceite de Palma (
 # Build into a time series
 palma_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
 plot(decompose(palma_ts))
+save(palma_ts, file = "data/palma_ts")
+
+# Build into data frame
+palma_df <- data.frame(fechas, quote)
+colnames(palma_df) = c("Date", "palma")
+save(palma_df, file = "data/palma_df")
+
 # EOC

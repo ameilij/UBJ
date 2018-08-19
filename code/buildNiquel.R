@@ -18,7 +18,7 @@ library(ggpubr)
 
 Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
 niquel_data <- Quandl("ODA/PNICK_USD")
-# niquel_data <- Quandl("LME/PR_NI")
+# niquel_data <- Quandl("LME/PR_NI") FUENTE ALTERNA PERO INCOMPLETA
 
 # Limpiar serie de tiempo niquel en su data.frame
 # niquel_data <- niquel_data[, c(1,2)]
