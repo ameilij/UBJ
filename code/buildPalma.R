@@ -26,7 +26,7 @@ colnames(palma) <- c("Date", "palma")
 
 fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")
 quote <- c(1:2922)
-last_quote <- palma[1,2]
+last_quote <- palma[dim(palma)[1],2]
 
 for(i in 1:2922)
 {if(length(palma[which(palma$Date == fechas[i]), ]$palma))
