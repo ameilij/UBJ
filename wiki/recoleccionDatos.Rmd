@@ -1,0 +1,40 @@
+---
+title: "Procedimiento de Muestra y Recolección de Datos"
+author: "Ariel E. Meilij"
+date: "8/19/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Recolección de Datos
+La investigación en curso requiere la recopilación de las series de tiempo que representan los regresores fuentes de exportación de Colombia y factores endógenos afectando el valor de la TRM. La TRM es a la vez variable dependiente e independiente para el estudio, por lo que se recopila de igual forma que el resto de los regresores. Para el análisis de selección de regresores se utilizó un estudio de las principales fuentes de exportación de Colombia tal cual las reporta la del sitio oficial de la _DANE COLOMBIA_ bajo la sección **Datos Históricos**.
+
+La selección de datos se utilizó del universo potencial indicado en el siguiente cuadro.
+
+![](ExportacionesColombia.png)
+
+A pesar de utilizar la estadística de exportaciones de la DANE como guía, no todas las exportaciones tienen fuentes de datos completas, creíbles, utilizables o reproducibles para propósitos académicos. Por lo tanto se redujo el conjunto de exportaciones a utilizar a las once principales cuyas fuentes de datos estaban al alcance de cualquier investigador con propositos de reproducción científica. 
+
+## Fuentes de Series de Datos Quandl
+Las siguientes series de tiempo fueron utilizadas del sitio **Quandl** a través del API para el lenguaje R.
+
+
+| SERIE DE TIEMPO | ARCHIVO TS       | ARCHIVO DF       | VARIABLE      | SERIE QUANDL       |
+|-----------------|------------------|------------------|---------------|--------------------|
+| TRM             | trm_ts           | trm_df           | trm           | CURRFX/USDCOP      |
+| ACEITE DE PALMA | palma_ts         | palma_df         | palma         | ODA/PPOIL_USD      |
+| ORO             | oro_ts           | oro_df           | oro           | WGC/GOLD_DAILY_USD |
+| PETROLEO WTI    | wti_ts           | twi_df           | wti           | EIA/PET_RWTC_D     |
+| CAFE            | cafe_ts          | cafe_df          | cafe          | CHRIS/ICE_KC1      |
+| BANANA          | banana_ts        | banana_df        | banana        | ODA/PBANSOP_USD    |
+| NIQUEL          | niquel_ts        | niquel_df        | niquel        | LME/PR_NI          |
+| GASOIL          | gasoil_ts        | gasoil_df        | gasoil        | NASDAQOMX/NQCIGOE  |
+| POLIPROPILENO   | polipropileno_ts | polipropileno_df | polipropileno | FRED/WPU091303223  |
+| HULLA TERMICA   | hulla_ts         | hulla_df         | hulla         | CHRIS/SGX_CFF3     |
+| CARBON          | carbon_ts        | carbon_df        | carbon        | EIA/COAL           |
+
+Todas las fuentes de datos pueden ser accesidades facilmente en este mismo sitio **Github**.
+
