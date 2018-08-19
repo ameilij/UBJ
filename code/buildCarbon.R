@@ -19,7 +19,7 @@ library(ggpubr)
 Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
 carbon_data <- Quandl("EIA/COAL")
 
-# Limpiar serie de tiempo GOLD en su data.frame
+# Limpiar serie de tiempo CARBON en su data.frame
 carbon <- carbon_data[, 1:2]
 carbon <- subset(carbon, carbon$`Week Ended` > "2009-12-31")
 colnames(carbon) <- c("Date", "carbon")
