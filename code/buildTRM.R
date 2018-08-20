@@ -39,7 +39,7 @@ last_quote <- trm[which(trm$Date == fechas[i]), ]$trm}
 }
 
 # Build into a time series
-trm_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
+trm_ts <- ts(quote, start=c(2010,1,1), frequency=365)
 plot(decompose(trm_ts))
 save(trm_ts, file = "data/trm_ts")
 
