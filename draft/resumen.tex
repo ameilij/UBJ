@@ -2,7 +2,7 @@
 
 \Large
  \begin{center}
-Resumen\\ 
+Resumen\\
 \hspace{5pt}
 
 % Author names and affiliations
@@ -10,23 +10,27 @@ Resumen\\
 Ariel E. Meilij$^1,^2$  \\
 \hspace{5pt}
 
-\small  
-$^1$) Universidad Benito Juárez G.\\
-ariel.meilij@gmail.com\\
+\small
+$^1$) Universidad Benito Juárez G.
 $^2$) Universidad Latinoamericana de Ciencia y Tecnología
 \end{center}
 \hspace{5pt}
 
 \normalsize
-El siguiente trabajo de investigación tiene como finalidad determinar un modelo de predicción para la tasa de cambio del dólar en Colombia (conocida legalmente como la TRM) utilizando aprendizaje automatizado. La investigación se enfoca en la hipótesis de que las series de tiempo pueden utilizarse como elementos de predicción por contener la tendencia de una variable, pero son más fuertes cuando se utilizan las variables exógenas que modelan e intervienen en dicho comportamiento. Para la TRM estas variables independientes son los regresores representados por los principales rubros de exportación del país. En vez de extraer un modelo en base a la observación, se utiliza el aprendizaje automatizado para entrenar los datos de las series de tiempo de la TRM y los rubros de exportación, y se unen con un modelo ensamblado de pronostico ARIMA para la serie de tiempo y regresión multivariable para los factores exógenos. 
+El siguiente trabajo de investigación tiene como finalidad determinar un modelo de predicción para la tasa de cambio del dólar en Colombia (conocida legalmente como la TRM o Tasa Representativa de Mercado) utilizando aprendizaje automatizado. La investigación se enfoca en la hipótesis de que la serie de tiempo que representa la TRM puede utilizarse como elemento de predicción por contener la tendencia de una variable macroeconómica, pero el modelo es más robusto cuando se combina con las variables exógenas que intervienen y coaccionan dicho comportamiento. Para la TRM estas variables independientes son los regresores representados por los principales rubros de exportación del país. A través del aprendizaje automatizado (machine learning) se entrenan los datos que representan las distintas series de tiempo para generar un modelo de pronóstico ARIMA en función de la fluctuación inherente de la TRM, y un modelo de regresión multivariable utilizando la TRM como variable dependiente y los diferentes datos de rubro de exportación como variables independientes. Ambos modelos entrenados representan pronósticos de alta precisión cuyos resultados se convierten en variables independientes de un modelo ensamblado que utiliza las salidas de los primeros como entradas para la generación de un nuevo aprendiz con valores superiores de precisión.
+
+\textbf{Palabras Claves:} TRM, tasa de cambio, aprendizaje automatizado, ARIMA, regresión multivariable, modelos ensamblados, ciencia de datos
+
 
 \hspace{10pt}
 
 \Large
  \begin{center}
-Abstract\\ 
+Abstract\\
 \hspace{5pt}
 \end{center}
 
 \normalsize
-The following research thesis objective is the determination of a prediction model for the Colombian Peso exchange rate (legally known as the TRM) using machine learning techniques. The research focuses on the hipothesis that time series can be used for forecasting purposes given their intrinsic trend capacity, but their potential can be strengthened when coupled with exogenous variables that confound said behavior. For the TRM these independent variables are represented by the principal export components. Instead of extracting a model through observation, machine learning is used to train the different time series representing the values of the TRM and exports. Ensambled methodologies of stacking are then used to join the predictive capacities of ARIMA forecasting for TRM time series and multivariable regresion for the different export variables confounding the TRM pricing.
+The objetive of the following research thesis is the determination of a prediction model for the Colombian Peso exchange rate (legally known as the TRM or Market Representative Rate) using machine learning. The investigation focuses on the hipothesis that the time series representative of the TRM can be used as a prediction element for containing macroeconomic tendencies of the variable, yet the model becomes more robust when combined with the exogenous variables that intervene and coherse such behavior. For the TRM said independent variables are regresors representatives of the main export commodities for the country.  Through machine learning data representing the different time series are used to generate an ARIMA forecasting model in function of the inherent fluctuation of the TRM, and a multivariable regression model using the TRM as the dependent variable and the different export commodities as independent regresors. Both trained models represent highly accurate forecasting tools whose results become the independent variables for a third ensambled model through stacking techniques, where the output of the first two learners become the input of a third with higher level of accuracy.
+
+\textbf{Key Words:} TRM, forex, machine learning, ARIMA, multivariable regression, ensambled models, data science
