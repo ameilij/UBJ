@@ -92,11 +92,12 @@ modeloEnsamblado
 summary(modeloEnsamblado)
 
 # Test individual de valores aleatorios comparativos
-indices_aleatorios <-  sample.int(dim(-inTrain)[1], 10)
-y_values <- df1[indices_aleatorios, 2]
-y1_hat <- modelFitARIMA$fitted[indices_aleatorios]
-y2_hat <- predict(modelFitGLM, df1[indices_aleatorios, 3:12])
-y3_hat <- predict(modeloEnsamblado, df_ensamblado[indices_aleatorios, 2:3])
+size_b <- dim(testing)[1]
+indices_aleatorios <-  sample.int(size_b, 10)
+y_values <- df_ensamblado[indices_aleatorios, 1]
+y1_hat <- predARIMA[indices_aleatorios]
+y2_hat <- predGLM[indices_aleatorios]
+y3_hat <- modeloEnsamblado$finalModel$fitted.values[indices_aleatorios]
 testMatrix <- data.frame(y_values, y1_hat, y2_hat, y3_hat, round(((y1_hat/y_values)-1)*100,1), round(((y2_hat/y_values)-1)*100,1), round(((y3_hat/y_values)-1)*100,1))
 colnames(testMatrix) = c("VALOR REAL", "Y1_HAT", "Y2_HAT", "Y3_HAT", "ERROR % Y1", "ERROR % Y2", "ERROR % Y3")
 print(testMatrix)
