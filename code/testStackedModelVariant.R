@@ -87,7 +87,7 @@ summary(df_ensamblado)
 plot(df_ensamblado, main = "Validacion Datos Modelo Ensamblado")
 
 # Entrenar modelo ensamblado con GAM
-modeloEnsamblado <- train(trm ~ ., method = "gam", data = df_ensamblado)
+modeloEnsamblado <- train(trm ~ ., method = "glm", data = df_ensamblado)
 modeloEnsamblado
 summary(modeloEnsamblado)
 
