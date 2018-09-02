@@ -105,6 +105,22 @@ print(mean(testMatrix$`ERROR % Y1`))
 print(mean(testMatrix$`ERROR % Y2`))
 print(mean(testMatrix$`ERROR % Y3`))
 
+# Grafica Prueba 3 Modelos con Valores Aleatorios
+size_b <- dim(testing)[1]
+indices_aleatorios <-  sample.int(size_b, 100)
+y_values <- df_ensamblado[indices_aleatorios, 1]
+y1_hat <- predARIMA[indices_aleatorios]
+y2_hat <- predGLM[indices_aleatorios]
+y3_hat <- modeloEnsamblado$finalModel$fitted.values[indices_aleatorios]
+
+graf1 = qplot(y_values, y1_hat, geom = c("point", "smooth"))
+graf2 = qplot(y_values, y2_hat, geom = c("point", "smooth"))
+graf3 = qplot(y_values, y3_hat, geom = c("point", "smooth"))
+ggarrange(graf1, graf2, graf3 + rremove("x.text"), 
+          labels = c("Valores Reales vs. ARIMA", "Valores Reales vs. GLM", "Valores Reales vs. STACKING"),
+          ncol = 3, nrow = 1)
+
+
 # Grafica del Modelo Ensamblado: Valores Reales vs. Valores Esperados
 this_y <- df_ensamblado$trm
 this_x <- modeloEnsamblado$finalModel$fitted.values
