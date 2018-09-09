@@ -1,0 +1,62 @@
+\pagenumbering{arabic}
+\setcounter{chapter}{0}
+\chapter{Capítulo I: \\Protocolo de Investigación}
+\thispagestyle{empty}
+
+\section{El Problema de Investigación}
+El siguiente proyecto de investigación busca analizar el problema de la determinación del valor futuro de la TRM de Colombia en base a los componentes principales de exportación del país, que conforman su cesta de divisas, con miras a crear un modelo predictivo matemático que le sirva a la organización para la optimizar los procesos comerciales y financieros de la misma. ¿Qué es la TRM que afecta tanto el funcionamiento de los importadores? Actualmente la Superintendencia Financiera de Colombia es la que calcula y certifica diariamente la TRM con base en las operaciones registradas el día hábil inmediatamente anterior y la define de la siguiente manera (Circular Reglamentaria Externa del Banco de la República DODM-146, 2015):
+
+\begin{quotation}
+	La tasa de cambio representativa del mercado (TRM) es la cantidad de pesos colombianos por un dólar de los Estados Unidos (antes del 27 de noviembre de 1991 la tasa de cambio del mercado colombiano estaba dada por el valor de un certificado de cambio). La TRM se calcula con base en las operaciones de compra y venta de divisas entre intermediarios financieros que tranzan en el mercado cambiario colombiano, con cumplimiento el mismo día cuando se realiza la negociación de las divisas.
+\end{quotation}
+
+La Superintendencia Financiera de Colombia no determina el valor de la TRM sino de un elemento derivado de las operaciones de compra y venta de la misma. Son los agentes de operación (exportadores que venden sus productos en dólares y los deben canjear a pesos colombianos e importadores que compran sus productos en dólares y para tal fin cambian sus pesos colombianos). Ambos obedecen a fuerzas del mercado que dan forma y materializan la valorización.
+
+Es de conocimiento que la cesta petrolera influye en la valorización de la TRM, sin embargo, poco o nada se ha estudiado de que otras variables actúan en la ecuación total. Cada una de estas debe pensarse como una variable independiente de un modelo predictivo que interviene en la valorización total de la TRM, y sin los cuales la formula queda incompleta.
+
+\section{Impacto Social}
+El trabajo cumple con la dimensión de relevancia social. Ninguna empresa quiere costear sus productos por encima de los demás agentes del mercado, so pena de perder participación de mercado a sus competidores con precios más ventajosos. La capacidad de estimar a futuro el mejor pronóstico de tasa de cambio reduce el porcentaje de carga por previsión de volatilidad de moneda (también conocido en contabilidad como colchón) lo que redunda en un precio mejor para el consumidor y la sociedad en general. Al reducir las ineficiencias del cálculo de costos prediciendo de forma correcta la tasa de cambio los consumidores ganan el diferencial entre el precio pobremente estimado y un precio ajustado a las realidades del cambio futuro.
+
+\section{Línea de Investigación}
+El siguiente trabajo de investigación se apega a la línea de investigación financiera de la UBJ. La universidad define la línea financiera como aquella que investiga modelos económicos y financieros innovadores que impulsen el crecimiento y sustentabilidad de la organización a fin de relevar su competitividad \cite{guiaAcademicaDAG}.
+
+La hipótesis de trabajo de la investigación propone un nuevo modelo de predicción de la tasa de cambio de Colombia utilizando aprendizaje automatizado y un modelo ensamblado de aprendices, lo que representa un enfoque innovador para mejorar la situación de optimización de costos y competitividad de la empresa.
+
+\section{Tipo de Estudio}
+El tipo de estudio es hipotético deductivo, cuantitativo.
+
+Es hipotético deductivo porque:
+
+\begin{itemize}
+\item partimos de una teoría base (macroeconomía que sustenta la tasa de cambio con la balanza de pagos y exportaciones, machine learning para deducir modelos predictivos en base a grandes muestras de datos)
+\item formulamos una hipótesis de trabajo
+\item aplicamos ciencia de datos para una recolección masiva de datos de diferentes regresores (cada uno un rubro importante de exportaciones de Colombia)
+\item Confirmamos la hipótesis al extraer un modelo predictivo estadístico
+\end{itemize}
+
+\section{Pregunta de Investigación}
+La pregunta de investigación de este anteproyecto surge de una pregunta real y de aplicación necesaria en el ámbito empresarial de una organización importadora de bienes de consumo masivo al mercado de Colombia: \emph{¿Cómo podemos predecir la TRM para mitigar el efecto negativo de las fluctuaciones en la tasa de cambio en la contabilidad de precios y costos?}
+
+\section{Objetivo General de la Investigación}
+El objetivo principal de la investigación es construir un modelo parsimonioso predictivo que permita determinar el valor futuro de la TRM a partir de variables predictivas dadas.
+
+\subsection{Objetivos específicos}
+Los objetivos específicos de la investigación son los siguientes:
+
+\begin{itemize}
+	\item Identificar que variables dentro del marco económico colombiano son las que tienen mayor grado de incidencia en la determinación de la TRM colombiana.
+	\item Cuantificar cuales y cuantas de estas variables forman parte de un modelo predictivo parsimonioso que permita realizar predicciones dentro de un intervalo de confidencia con valores de p = 0.05.
+	\item Determinar qué tipo de modelo parsimonioso es el correcto utilizando las variables predictivas del punto anterior con los mismos intervalos de confidencia, o en su defecto si este es un modelo predictivo compuesto.
+\end{itemize}
+
+La intención del trabajo de investigación es integrar el uso de rubros de exportación como series de tiempo para el entrenamiento de modelos de aprendizaje automatizado en forma de aprendices. La determinación del modelo no la hace el investigador sino que la metodología de aprendizaje automatizado ayuda a entrenar los datos para extraer el modelo. Uno o ambos de estos modelos debe cumplir con la premisa de alcanzar un alto nivel de predicción. Si ambos modelos cumplen con la premisa de alto valor predictivo entonces sus egresos - los valores estimados - serán utilizados como entradas de un tercer modelo ensamblado (conocido en inglés como modelo apilado o \textit{stacking}) para diseñar un modelo predictivo parsimonioso final con mayor valor de precisión.
+
+\section{Alcances y Limitaciones}
+Las siguientes son los alcances y limitaciones de la investigación.
+
+\begin{itemize}
+	\item El siguiente estudio está basado en la TRM colombiana, que por su propia definición establece una razón entre dos divisas, el peso colombiano y el dólar estadounidense. Aun cuando la solución prevista al problema muy probablemente pudiera utilizarse con otras monedas, esta investigación no las abarca.
+	\item El siguiente estudio no hace referencia ni analiza en profundidad el sistema para determinar la TRM por parte de la Superintendencia Financiera de Colombia; este pudiera ser un tema interesante de tesis de posgrado para un futuro investigador. El resultado final del método de la Superintendencia Financiera de Colombia para el valor de la TRM se utiliza solo como una observación matemática de un hecho predecible a partir de ene cantidad de variables.
+	\item El siguiente estudio utiliza base de datos y datos oficiales históricos medidos desde el año 2000 hasta el año 2017. Si bien este valor es menor al de una generación, ha sido arbitrariamente establecido como punto de quiebre ya que reúne muchos más datos estadísticos de los necesarios para un modelo predictivo de gran precisión.
+	\item La siguiente investigación busca un modelo predictivo parsimonioso. Un modelo parsimonioso en estadística es un modelo que cumple con el valor predictivo buscado con el menor número de variables predictivas necesarias. Puede entonces existir variables predictivas que afecten el valor de la TRM pero que este estudio no incluirá si el resultado del modelo predictivo es suficiente con un número menor de variables.
+\end{itemize}
