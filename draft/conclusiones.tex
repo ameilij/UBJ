@@ -1,3 +1,59 @@
-\setcounter{chapter}{4}
 \chapter{Conclusiones y Recomendaciones}
-Contenidos por definir.
+La conclusión principal de la investigación doctoral es que los rubros de exportación de la economía Colombiana pueden ser utilizado como regresores de un modelo predictivo de la tasa de referencia del mercado. Cuando estos regresores se combinan con la serie de tiempo de la TRM misma a través del uso del aprendizaje automatizado, el resultado es un modelo ensamblado combinado parsimonioso y altamente preciso.
+
+Cuando elevamos el nivel de análisis alrededor de los resultados del trabajo de laboratorio podemos ver conclusiones enfocadas en tres rubros:
+
+\begin{enumerate}
+  \item conclusiones específicas sobre el uso y validez de cada método de predicción utilizado en el aprendizaje automatizado como aprendiz
+  \item conclusiones específicas sobre las ventajas de la metodología de métodos ensamblados
+  \item conclusiones del uso de aprendizaje automatizado en la contabilidad de costos
+\end{enumerate}
+
+La Ciencia de Datos y el Aprendizaje Automatizado como disciplinas son áreas de la academia relativamente nuevas y con menor exposición en las universidades Latinoamericanas. El trabajo de investigación doctoral nos permite aportar recomendaciones al respecto de los siguientes temas:
+
+\begin{itemize}
+  \item recomendaciones sobre la implementación de una investigación de Ciencia de Datos utilizando Aprendizaje Automatizado
+  \item recomendaciones sobre futuros trabajos de investigación resultantes de inquietudes que surgieron a lo largo del trabajo de laboratorio y a las cuales no se les pudo dar respuestas que satisfagan la curiosidad científica
+\end{itemize}
+
+\section{Conclusiones}
+Cada método de aprendizaje automatizado utilizado en el siguiente trabajo de investigación tiene sus bondades. Para discutir cada uno con total objetividad, haremos referencia a una sola tabla comparativa de valores de desempeño y precisión.
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Desempeño Comparativo de Métodos Machine Learning}
+    \label{tab:table1}
+    \begin{tabular}{c|c|c|c}
+      \textbf{Indicador} & \textbf{ARIMA} & \textbf{Regresión Lineal} & \textbf{Modelo Ensamblado}\\
+      \hline
+      RMSE & 25.5473 &89.0524 & 24.8040 \\
+      R2 & 0.9976 & 0.9714 & 0.9978 \\
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\subsection{Modelo ARIMA}
+El modelo ARIMA tuvo resultados por encima de las expectativas del investigador, con un valor de error cuadrático bajo y un valor de coeficiente de determinación alto, ciertamente superior al método de regresión lineal multivariable. La fortaleza del pronóstico ARIMA se fundamente en lo completo y robusto del juego de datos utilizado. La serie de tiempo de la TRM es estudiada por todo el sector contable, económico y financiero de Colombia, por lo que no fue sorpresa que de todas las series de datos está fuera la más accesible de estudio. El comportamiento de la serie de datos TRM también tienen una tendencia secular y de estacionalidad muy marcadas que se ajusta al uso de metodologías como ARIMA.
+
+Dado el caso de no contar con otras metodologías o acceso a base de datos mayores para ampliar el rango de métodos potables, el uso de un aprendiz ARIMA puede solucionar el problema de pronosticar el valor futuro de la TRM sin necesidad de mayor complicación.
+
+\subsection{Modelo de Regresión Lineal Multivariable}
+El modelo de regresión lineal multivariable tuvo el desempeño menos preciso de los tres métodos estudiados. El valor del error cuadrático fue el mayor de los tres (aunque no necesariamente se puede decir que fue alto) y el coeficiente de determinación fue el menor de los tres (aunque fue alto estadísticamente hablando). El uso de los rubros de exportación como regresores se justifica con el calce ajustado del modelo, por lo que se considera un modelo robusto y parsimonioso. Sin embargo es un modelo más difícil de aplicar sin conocimientos de programación de métodos de aprendizaje automatizado y no rindió mejores pronósticos que el uso más sencillo de ARIMA.
+
+\subsection{Modelo Ensamblado Stacking}
+Correspondiendo con la literatura y los trabajos de autores como Daroczi, Leek, Peng y Tattar, el modelo ensamblado tuvo los mejores niveles de desempeño y precisión con el error cuadrático más bajo y el coeficiente de determinación más alto. La utilización de los dos métodos iniciales como entradas para un aprendiz ensamblado genera un método más robusto que se nutre de entradas pre-procesadas por los aprendices que las componen. Habiendo dicho esto, el desempeño obtenido por el método ensamblado no se puede considerar sino marginal en comparación con los aprendices que lo alimentan. La diferencia del error cuadrático es considerable si se mide contra el aprendiz de regresión lineal multivariable, pero poco notable contra el aprendiz ARIMA. De la misma forma, el valor del coeficiente de determinación su superior por menos de 0.026 contra el aprendiz de regresión lineal multivariable, pero nuevamente imperceptible versus el aprendiz ARIMA.
+
+\subsection{Modelos de Aprendizaje Automatizado versus Modelos Ensamblados}
+La utilización de la TRM en contratos de futuros o \emph{forwards} puede justificar la complejidad adicional de implementar un algoritmo compuesto. Para funciones de análisis de costos el overhead adicional de lidiar con un modelo ensamblado puede no hacer diferencias en el costeo final, sobre todo en cifras con redondeos a 2 decimales.
+
+Para la organización moderna y de amplio alcance la complejidad adicional de la utilización de modelos ensamblados puede verse recompensada con el tiempo. El mayor nivel de precisión siempre redundará en mejores márgenes de utilidad y ganancias de productividad. En un ambiente dinámico y de bajo margen de utilidad como lo es el negocio de corretaje bursátil dicha precisión puede ser la diferencia entre la viabilidad de operación o no.
+
+Para reportes ad-hoc, análisis de factibilidad, o toma rápida de decisiones, el uso de modelos ensamblados puede no ser la mejor respuesta. El trabajo de investigación doctoral llegó a un modelo parsimonioso y preciso con el uso del modelo ARIMA, el más sencillo de los tres de aplicar y entender. En el caso de tener que afrontar pronósticos de mediana exactitud, un modelo simple y rápido de aplicar puede satisfacer a la organización mejor que uno de mayor precisión pero intensivo en el uso de recursos y bases de datos extensas y validadas.
+
+\section{Recomendaciones}
+El trabajo de investigación arroja recomendaciones sobre la implementación de una investigación de Ciencia de Datos utilizando Aprendizaje Automatizado, y recomendaciones sobre futuros trabajos de investigación resultantes de inquietudes que surgieron a lo largo del trabajo de laboratorio.
+
+\subsection{Implementación de Investigación de un Modelo Predictivo de Aprendizaje Automatizado}
+Todas las fuentes de datos y todo el código fuente utilizado en el trabajo doctoral puede ubicarse en el sitio \emph{Github} del investigador. Ambos pueden ser utilizados bajo licencia MIT Open Source por cualquier estudiante, ejecutivo o persona que quiere conocer, ampliar, replicar, corroborar, mejorar y/o ampliar el conocimiento sobre la Ciencia de Datos y el Aprendizaje Automatizado.
+
+Empero, utilizar el código provisto desde un computador personal es muy diferente a desplegar una investigación de Ciencia de Datos. Si para otros investigadores la recopilación de la información puede ser un problema crítico y el diseño de la instrumentación una decisión difícil para asegurar un análisis exitoso, el científico de datos se encuentra con problemas diferentes y típicos de su rama. La cantidad de datos disponible para cada investigación por lo general es exagerada y disponible con facilidad (razón por la cual se acuña el término BIG DATA). El problema pasa de la recolección al procesamiento de los datos. De igual manera el diseño de la instrumentación fue facilitado por la existencia de cientos de librerías disponibles en el lenguaje R. El investigador de datos pasa más tiempo decidiendo que juegos de datos son aplicables al
