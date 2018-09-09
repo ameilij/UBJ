@@ -1,8 +1,8 @@
 \pagebreak
 \section{Aprendizaje Automatizado}
-El aprendizaje automatizado es un campo de la ciencia de la computación donde se busca darle a las computadores la habilidad de aprender sin ser explicitamente programadas. El término se le atribuye a \textbf{Arthur Samuel}, un pionero del campo de la inteligencia artificial, quien lo acuñó en 1959 (Kohavi, R. y Provost, F., 1998).
+El aprendizaje automatizado es un campo de la ciencia de la computación donde se busca darle a las computadores la habilidad de aprender sin ser explícitamente programadas. El término se le atribuye a \textbf{Arthur Samuel}, un pionero del campo de la inteligencia artificial, quien lo acuñó en 1959 \cite{kohaviProvost}. Algunos autores también señalan al profesor James Townsend de la Universidad de Indiana quien se refiere al término en sus trabajos sobre matrices de confusión \cite{townsend}.
 
-Es interesante que los métodos de aprendizaje automatizado proliferaron de forma paralela al concepto de ciencia de datos, y solo fueron absorbidos por esta en los últimos diez años. Alpaydim nos describe el aprendizaje automatizado como la programación de computadoras para optimizar un criterio de desempeño utilizando datos o experiencia pasada (Alpaydim, E., 2010). Tom Mitchell respeta este concepto al describir el aprendizaje automatizado como "\ldots la construcción de programas computacionales que aprenden con la experiencia\ldots” (Mitchell, T., 1997, pág. XV). Solo Peter Harrington utiliza una descripción mucho más simplista al determinar que “El aprendizaje automatizado es la extracción de información de la data.” (Harrington, P. 2012, pág. 5).
+Es interesante que los métodos de aprendizaje automatizado proliferaron de forma paralela al concepto de ciencia de datos, y solo fueron absorbidos por esta en los últimos diez años. Alpaydim nos describe el aprendizaje automatizado como la programación de computadoras para optimizar un criterio de desempeño utilizando datos o experiencia pasada \cite{alpaydin}. Tom Mitchell respeta este concepto al describir el aprendizaje automatizado como "\ldots la construcción de programas computacionales que aprenden con la experiencia\ldots” \cite[pag. XV]{mitchell}. Solo Peter Harrington utiliza una descripción mucho más simplista al determinar que “El aprendizaje automatizado es la extracción de información de la data.” \cite[pag. 5]{harrington}.
 
 Estudiar los procedimientos de aprendizaje automatizado equivale a estudiar tres temas principales que los componen.
 
@@ -14,8 +14,11 @@ Estudiar los procedimientos de aprendizaje automatizado equivale a estudiar tres
 
 Todo el mundo predice todo tipo de aseveraciones, desde el resultado de una elección presidencial hasta el partido de fútbol del domingo de una liga en particular. Pero en el sentido estricto de la palabra, ¿qué significa predecir? En nuestro contexto científico, definiremos el acto de predecir como el resultado de utilizar la probabilidad y muestreo para la selección de un conjunto de entrenamiento, el cual utilizaremos para construir las características de diseño de una función de predicción. La función utilizará dichas características para generar nuevas predicciones.  Los componentes para la selección adecuada de variables de predicción son los siguientes:
 
-TO DO: Agregar el siguiente esquema
-Pregunta > Datos > Atributos > Algoritmo > Parámetros > Evaluación
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 6 in]{images/esquemaVariablesPrediccion.png}
+    \caption{Esquema de Generación de Variables de Predicción}
+\end{figure}
 
 Un ejemplo muy común utilizado generalmente para explicar el uso del aprendizaje automatizado es la detección de correo chatarra, también conocido como spam. Podemos utilizar atributos cuantitativos de los mensajes, por ejemplo la frecuencia de ciertas palabras, para que un modelo se entrene y pueda predecir dentro de ciertos rangos de certeza si un correo cualquiera es o no spam.
 
@@ -23,10 +26,13 @@ Un ejemplo muy común utilizado generalmente para explicar el uso del aprendizaj
 
 Hay una secuencia de pasos importante para la consecución de modelos de aprendizaje automatizado coherentes.
 
-TO DO: Agregar el siguiente esquema como gráfico
-Pregunta : Data : Atributos : Algoritmos
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width = 6 in]{images/pasosAprendizajeAutomatizado.png}
+    \caption{Pasos para la Consecución de Modelos con Aprendizaje Automatizado}
+\end{figure}
 
-La combinación de algunos datos y un deseo extremo de conseguir una respuesta no nos asegura que una razonable pueda extraerse de un cuerpo cualquiera de información (Tukey, 1977). También es útil recordar que la calidad de los datos que ingresan al conjunto de entrenamiento tienen un efecto sobre el resultado del modelo. Datos que no son útiles no aportan nada. Es mucho mejor que la data sea curada y organizada de manera que tenga alta relevancia al tema de estudio.
+La combinación de algunos datos y un deseo extremo de conseguir una respuesta no nos asegura que una razonable pueda extraerse de un cuerpo cualquiera de información \cite{tukey}. También es útil recordar que la calidad de los datos que ingresan al conjunto de entrenamiento tienen un efecto sobre el resultado del modelo. Datos que no son útiles no aportan nada. Es mucho mejor que la data sea curada y organizada de manera que tenga alta relevancia al tema de estudio.
 
 Los buenos atributos son aquellos que comparten las siguientes características:
 
@@ -47,11 +53,10 @@ No es fácil hacer una buena selección de atributos que mas adelante se convert
 En este sentido los algoritmos importan mucho menos que la selección y curación de la data a utilizar. Los mejores métodos de aprendizaje automatizado reúnen una serie de características que los hace justamente sobresalir del montón. Las características en mención son las siguientes:
 
 \begin{enumerate}
-	\item Interpretable:
-	\item Simples:
-	\item Precisos:
-	\item Rápidos (de entrenar y evaluar):
-	\item Escalables:
+	\item Interpretable: el modelo debe ser capaz de llegar a una solución que pueda entenderse y aplicarse al problema que se tiene a mano.
+	\item Simples: el modelo debe ser lo suficientemente sencillo para implementarse en un ambiente científico real con las herramientas disponibles.
+	\item Precisos: el modelo debe tener un nivel mínimo de precisión que esté en linea con los parámetros esperados por la investigación científica tradicional.
+	\item Rápidos (de entrenar y evaluar): el modelo debe ser capaz de ser entrenado y evaluado dentro de marcos normales de tiempo y recursos. \item Escalables: el modelo, de ser posible, debe ser capaz de escalar e implementarse en sistemas de menor costo de recursos.
 \end{enumerate}
 
 La predicción de modelos se basa mucho en el arte de compensar beneficios versus necesidades.
@@ -63,7 +68,7 @@ La predicción de modelos se basa mucho en el arte de compensar beneficios versu
 	\item modelos escalables vs. precisión
 \end{enumerate}
 
-A pesar de tener que sopesar la mejor forma de compensar todas estas variables, la interpretación es muy importante y debe conservar su lugar, ya que poco sirve un modelo rápido y preciso que no se puede interpretar. Muchos autores otorgan un segundo lugar de importancia a lo escalable del modelo. Se han dado casos donde modelos muy precisos no se han podido poner en producción por la complejidad de escalar el algoritmo. El caso mas mencionado es el premio NETFLIX, el cual otorgo un millón de dolares al equipo con el mejor modelo de predicción de gustos de sus clientes, solo para luego llegar a la conclusión que el mismo era demasiado complejo y lento de escalar en producción y archivarlo (Techdirt, 2012).
+A pesar de tener que sopesar la mejor forma de compensar todas estas variables, la interpretación es muy importante y debe conservar su lugar, ya que poco sirve un modelo rápido y preciso que no se puede interpretar. Muchos autores otorgan un segundo lugar de importancia a lo escalable del modelo. Se han dado casos donde modelos muy precisos no se han podido poner en producción por la complejidad de escalar el algoritmo. El caso mas mencionado es el premio NETFLIX, el cual otorgo un millón de dolares al equipo con el mejor modelo de predicción de gustos de sus clientes, solo para luego llegar a la conclusión que el mismo era demasiado complejo y lento de escalar en producción y archivarlo \cite{techdirt}.
 
 \subsection{Métodos Supervisados y No-Supervisados}
 Para los autores Hastie, Tibshirani, y Friedman el aprendizaje supervisado intenta aprender una función f de predicción a través del uso de uso juegos de datos de entrenamiento en forma de muestras del total de los datos disponibles. El uso de datos de entrenamiento le permite al sistema aprender y minimizar el error del modelo de predicción \cite{theElements}.
@@ -86,7 +91,7 @@ En este punto debemos aclarar cuales son las ideas principales en las que hay qu
 \begin{enumerate}
 	\item Principalmente estamos interesados mucho mas en el error de generalización - el que se obtiene al aplicar un nuevo juego de datos al modelo de predicción - que del margen de error de resubstitución.
 	\item El error de resubstitución siempre va a ser menor que el error de generalización
-	\item La razon por la cual se da este fenómeno (que el error de resubstitución sea menor que el error de generalización) es el efecto de sobreajuste. El algoritmo se está ajustando de más a los datos.
+	\item La razón por la cual se da este fenómeno (que el error de resubstitución sea menor que el error de generalización) es el efecto de sobreajuste. El algoritmo se está ajustando de más a los datos.
 \end{enumerate}
 
 La data en la ciencia de datos tiene dos partes: señal y ruido. El objetivo del modelo de predicción es el de predecir la señal. Siempre se puede diseñar un modelo perfecto que capture tanto la señal como el ruido. Pero dicho modelo no se desempeñará bien en juegos de datos nuevos.
@@ -94,18 +99,18 @@ La data en la ciencia de datos tiene dos partes: señal y ruido. El objetivo del
 El efecto de sobreajuste se como la creación de un modelo optimista a partir del juego de datos de entrenamiento. Los métodos que utilizamos buscan interpretar los datos de tal manera que no solo se ajustan a la señal sino al ruido de los mismos. Por esa razón el margen de error de resubstitución (error dentro de la muestra) es tan bajo pero cuando se prueba el mismo modelo entrenado en un juego de datos externo el margen de error generalizado (fuera de la muestra) crece. Se ha comprobado que los errores por sobreajuste ocurren más en modelos complejos que en modelos sencillos. La razón es que muchas veces el modelo complejo es precisamente más complicado para ajustarse mejor a la señal de los datos, sin que estos ajustes sean necesarios - o precisos - al momento de cambiar del juego de datos.
 
 \subsection{Diseño de un Estudio de Aprendizaje Automatizado}
-El diseño de una investigación de ciencia de datos tiene seis pasos. El diseño del estudio de un problema de aprendizaje automatizado debe verse como el diseño de la fase de modelo (paso tres) mucho más detallado para no confundirlos. La metodología recomendada por el Dr. Jeff Leek (Leek, J. 2015) recomienda los siguientes seis:
+El diseño de una investigación de ciencia de datos tiene seis pasos. El diseño del estudio de un problema de aprendizaje automatizado debe verse como el diseño de la fase de modelo (paso tres) mucho más detallado para no confundirlos. La metodología recomendada por el Dr. Jeff Leek \cite{leek} recomienda los siguientes seis:
 
 \begin{enumerate}
 	\item Definir el margen de error deseado
 	\item Dividir la data en juegos específicos de entrenamiento, evaluación y validación (opcional)
 	\item En el juego de entrenamiento, seleccionar atributos y utilizar validación cruzada
 	\item En el juego de entrenamiento, seleccionar la función de predicción; utilizar nuevamente validación cruzada
-	\item si no se utilizo validación cruzada, aplicar prueba 1X al juego de evaluación
-	\item si se utilizo validación cruzada, aplicar prueba al juego de evaluación, refinar el algoritmo, y luego volver a someter 1X al juego de validación
+	\item si no se utilizo validación cruzada, aplicar prueba $1X$ al juego de evaluación
+	\item si se utilizo validación cruzada, aplicar prueba al juego de evaluación, refinar el algoritmo, y luego volver a someter $1X$ al juego de validación
 \end{enumerate}
 
-A pesar de que no tiene una comprobación científica, la comunidad siempre aconseja evitar las muestras pequeñas de la misma forma que se evitan en la estadística clásica. Una pregunta válida es cuanto de los datos disponibles se deben destinar al juego de entrenamiento, cuantos al juego de validación y cuantos al juego de evaluación. Zumel y Mount (Zumel, N., Mount, J., 2014) consideran un modelo sencillo de división con 90\% de los datos destinados al entrenamiento de modelos y el 10\% restante a la evaluación. Sin embargo Leek (Leek, J. 2015) en su libro \emph{Data Style} nos da un juego de reglas mas comprensivas de como distribuir los datos segun el volumen de los mismos.
+A pesar de que no tiene una comprobación científica, la comunidad siempre aconseja evitar las muestras pequeñas de la misma forma que se evitan en la estadística clásica. Una pregunta válida es cuanto de los datos disponibles se deben destinar al juego de entrenamiento, cuantos al juego de validación y cuantos al juego de evaluación. Zumel y Mount \cite{zumelMount} consideran un modelo sencillo de división con 90\% de los datos destinados al entrenamiento de modelos y el 10\% restante a la evaluación. Sin embargo Leek \cite{leek} en su libro \emph{Data Style} nos da un juego de reglas mas comprensivas de como distribuir los datos según el volumen de los mismos.
 
 \textbf{A. Si el volumen de datos es grande}
 \begin{itemize}
@@ -129,10 +134,10 @@ A pesar de que no tiene una comprobación científica, la comunidad siempre acon
 
 La tentación de utilizar el juego de datos de validación y/o evaluación es muy grande para todos los científicos de datos noveles. Sin embargo la literatura concuerda en que no se debe utilizar la evaluación sino hacia el final del proceso.
 
-La selección de que datos en particular deben elegirse en cada grupo debe ser aleatoria, con un porcentaje definido en cada uno pero total certeza de que no hay parcialidad en la selección. En el caso del lenguaje R, la biblioteca CARET tiene incorporada funciones para garantizar asignaciones de datos a los grupos de entrenamiento y evaluación totalmente aleatorios. Los juegos finales de datos deben reflejar sin embargo las mismas estructuras del problema. Un claro ejemplo son las series de tiempo (Hyndman, R., 2012) en las cuales los datos tiene un componente de tiempo que denota un orden en especial. De estos grupos debe seleccionarse muestras aleatorias pero representativas de los periodos de tiempo a fin de tener sentido. A su vez cada sub-muestra debe reflejar el mayor grado de diversidad posible. Esto se debe lograr con selección aleatoria pero a veces es difícil mantener dicho balance con la mezcla posible de atributos.
+La selección de que datos en particular deben elegirse en cada grupo debe ser aleatoria, con un porcentaje definido en cada uno pero total certeza de que no hay parcialidad en la selección. En el caso del lenguaje R, la biblioteca CARET tiene incorporada funciones para garantizar asignaciones de datos a los grupos de entrenamiento y evaluación totalmente aleatorios. Los juegos finales de datos deben reflejar sin embargo las mismas estructuras del problema. Un claro ejemplo son las series de tiempo \cite{hyndman} en las cuales los datos tiene un componente de tiempo que denota un orden en especial. De estos grupos debe seleccionarse muestras aleatorias pero representativas de los periodos de tiempo a fin de tener sentido. A su vez cada sub-muestra debe reflejar el mayor grado de diversidad posible. Esto se debe lograr con selección aleatoria pero a veces es difícil mantener dicho balance con la mezcla posible de atributos.
 
 \subsection{Tipo de Errores}
-El concepto de error en estadística es uno que embarca varias dimensiones. En lo que respecta al aprendizaje automatizado, no importa que tan grande sea la muestra ni que tan exacto sea el algoritmo, siempre cabe la probabilidad - aunque pequeña - que una predicción sea falsa a pesar de que arroja un resultado positivo. Podemos entonces dividir los tipos de errores según su predicción y verdadera naturaleza (Yakir, B. 2011).
+El concepto de error en estadística es uno que embarca varias dimensiones. En lo que respecta al aprendizaje automatizado, no importa que tan grande sea la muestra ni que tan exacto sea el algoritmo, siempre cabe la probabilidad - aunque pequeña - que una predicción sea falsa a pesar de que arroja un resultado positivo. Podemos entonces dividir los tipos de errores según su predicción y verdadera naturaleza \cite{yakir}.
 
 En lineas generales diremos que un resultado es positivo si ha sido identificado como tal, y que es negativo si ha sido rechazado. De tal forma:
 \begin{itemize}
@@ -199,4 +204,4 @@ La biblioteca \emph{CARET} (nombre extraído de Classification And Regression Tr
 	\item estimacion de la importancia de la variable
 \end{itemize}
 
-El paquete esta mantenido en GitHub bajo la administración del Doctor en Estadística Max Kuhn.
+El paquete esta mantenido en GitHub bajo la administración del Doctor en Estadística Max Kuhn \cite{caret}.
