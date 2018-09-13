@@ -1,0 +1,1094 @@
+\setcounter{chapter}{7}
+\chapter{Anexos}
+
+
+\section{Bibliotecas de Programas}
+La siguiente sección recopila los programas utilizados para el trabajo de investigación doctoral.
+
+\subsection{Programa buildTRM.R}
+El siguiente listado de secuencia de comandos R construye la serie de tiempos TRM para la tasa representativa del mercado.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/buildTRM.R
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Construye serie de datos TRM
+
+library(Quandl)
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+
+Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
+trm_data <- Quandl("CURRFX/USDCOP")
+
+# Limpiar serie de tiempo TRM en su data.frame
+trm <- trm_data[, 1:2]
+trm <- subset(trm, trm$Date > "2009-12-31")
+trm <- subset(trm, trm$Rate > 1500)
+colnames(trm) <- c("Date", "trm")
+
+fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")
+quote <- c(1:2922)
+# Cargar como valor inicial valor mas antiguo de la serie de tiempo
+last_quote <- trm[dim(trm)[1],2]
+
+for(i in 1:2922)
+{if(length(trm[which(trm$Date == fechas[i]), ]$trm))
+{quote[i] <- trm[which(trm$Date == fechas[i]), ]$trm
+last_quote <- trm[which(trm$Date == fechas[i]), ]$trm}
+  else
+  {quote[i] <- last_quote}
+}
+
+# Build into a time series
+trm_ts <- ts(quote, start=c(2010,1,1), frequency=365)
+plot(decompose(trm_ts))
+save(trm_ts, file = "data/trm_ts")
+
+# Build into data frame
+trm_df <- data.frame(fechas, quote)
+colnames(trm_df) = c("Date", "trm")
+save(trm_df, file = "data/trm_df")
+# EOC
+\end{lstlisting}
+
+\subsection{Programa buildBanana.R}
+El siguiente listado de secuencia de comandos R construye la serie de tiempos banana con los valores de las cotizaciones mundiales de la tonelada de guineo.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/buildBanana.R
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Construye serie de datos del banano
+
+library(Quandl)
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+
+Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
+banana_data <- Quandl("ODA/PBANSOP_USD")
+
+# Limpiar serie de tiempo banana en su data.frame
+banana <- subset(banana_data, banana_data$Date > "2009-12-31")
+colnames(banana) <- c("Date", "banana")
+
+fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")
+quote <- c(1:2922)
+# Cargar como valor inicial valor mas antiguo de la serie de tiempo
+last_quote <- banana[dim(banana)[1],2]
+
+for(i in 1:2922)
+{if(length(banana[which(banana$Date == fechas[i]), ]$banana))
+{quote[i] <- banana[which(banana$Date == fechas[i]), ]$banana
+last_quote <- banana[which(banana$Date == fechas[i]), ]$banana}
+  else
+  {quote[i] <- last_quote}
+}
+
+# Build into a time series
+banana_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
+plot(decompose(banana_ts))
+save(banana_ts, file = "data/banana_ts")
+
+# Build into data frame
+banana_df <- data.frame(fechas, quote)
+colnames(banana_df) = c("Date", "banana")
+save(banana_df, file = "data/banana_df")
+# EOC
+\end{lstlisting}
+
+\subsection{Programa buildCafe.R}
+El siguiente listado de secuencia de comandos R construye la serie de tiempos cafe con los valores de las cotizaciones mundiales de la tonelada de café Arabiga.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/buildCafe.R
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Construye serie de datos cafe
+
+library(Quandl)
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+
+Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
+cafe_data <- Quandl("CHRIS/ICE_KC1")
+
+# Limpiar serie de tiempo cafe en su data.frame
+cafe <- cafe_data[,c(1,5)]
+cafe <- subset(cafe, cafe$Date > "2009-12-31")
+cafe <- na.omit(cafe)
+colnames(cafe) <- c("Date", "cafe")
+
+fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")
+quote <- c(1:2922)
+# Cargar como valor inicial valor mas antiguo de la serie de tiempo
+last_quote <- cafe[dim(cafe)[1],2]
+
+for(i in 1:2922)
+{if(length(cafe[which(cafe$Date == fechas[i]), ]$cafe))
+{quote[i] <- cafe[which(cafe$Date == fechas[i]), ]$cafe
+last_quote <- cafe[which(cafe$Date == fechas[i]), ]$cafe}
+  else
+  {quote[i] <- last_quote}
+}
+
+# Build into a time series
+cafe_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
+plot(decompose(cafe_ts))
+save(cafe_ts, file = "data/cafe_ts")
+
+# Build into data frame
+cafe_df <- data.frame(fechas, quote)
+colnames(cafe_df) = c("Date", "cafe")
+save(cafe_df, file = "data/cafe_df")
+# EOC
+\end{lstlisting}
+
+\subsection{Programa buildCarbon.R}
+El siguiente listado construye la serie de tiempos carbón con los precios de las cotizaciones mundiales de la tonelada de carbón.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/buildCarbon.R
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Construye serie de datos carbon
+
+library(Quandl)
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+
+Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
+carbon_data <- Quandl("EIA/COAL")
+
+# Limpiar serie de tiempo CARBON en su data.frame
+carbon <- carbon_data[, 1:2]
+carbon <- subset(carbon, carbon$`Week Ended` > "2009-12-31")
+colnames(carbon) <- c("Date", "carbon")
+
+fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")
+quote <- c(1:2922)
+# Cargar como valor inicial valor mas antiguo de la serie de tiempo
+last_quote <- carbon[dim(carbon)[1],2]
+
+for(i in 1:2922)
+{if(length(carbon[which(carbon$Date == fechas[i]), ]$carbon))
+{quote[i] <- carbon[which(carbon$Date == fechas[i]), ]$carbon
+last_quote <- carbon[which(carbon$Date == fechas[i]), ]$carbon}
+  else
+  {quote[i] <- last_quote}
+}
+
+# Build into a time series
+carbon_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
+plot(decompose(carbon_ts))
+save(carbon_ts, file = "data/carbon_ts")
+
+# Build into data frame
+carbon_df <- data.frame(fechas, quote)
+colnames(carbon_df) = c("Date", "carbon")
+save(carbon_df, file = "data/carbon_df")
+# EOC
+\end{lstlisting}
+
+\subsection{Programa buildGasoil.R}
+El siguiente programa construye la serie de tiempo gasoil con los precios internacionales del gasoil en galones.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/buildgasoil.R
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Construye serie de datos del banano
+
+library(Quandl)
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+
+Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
+gasoil_data <- Quandl("NASDAQOMX/NQCIGOER")
+
+# Limpiar serie de tiempo gasoil en su data.frame
+gasoil <- gasoil_data[, c(1:2)]
+gasoil <- subset(gasoil, gasoil$`Trade Date` > "2009-12-31")
+gasoil <- subset(gasoil, gasoil$`Index Value` > 0)
+colnames(gasoil) <- c("Date", "gasoil")
+
+fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")
+quote <- c(1:2922)
+# Cargar como valor inicial valor mas antiguo de la serie de tiempo
+last_quote <- gasoil[dim(gasoil)[1],2]
+
+for(i in 1:2922)
+{if(length(gasoil[which(gasoil$Date == fechas[i]), ]$gasoil))
+{quote[i] <- gasoil[which(gasoil$Date == fechas[i]), ]$gasoil
+last_quote <- gasoil[which(gasoil$Date == fechas[i]), ]$gasoil}
+  else
+  {quote[i] <- last_quote}
+}
+
+# Build into a time series
+gasoil_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
+plot(decompose(gasoil_ts))
+save(gasoil_ts, file = "data/gasoil_ts")
+
+# Build into data frame
+gasoil_df <- data.frame(fechas, quote)
+colnames(gasoil_df) = c("Date", "gasoil")
+save(gasoil_df, file = "data/gasoil_df")
+# EOC
+\end{lstlisting}
+
+\subsection{Programa buildHulla.R}
+El siguiente programa construye la serie de tiempo hulla con las cotizaciones mundiales de la tonelada métrica de hulla térmica.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/buildHulla.R
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Construye serie de datos hulla termica
+
+library(Quandl)
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+
+Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
+hulla_data <- Quandl("CHRIS/SGX_CFF3")
+
+# Limpiar serie de tiempo HULLA en su data.frame
+hulla <- hulla_data[, c(1,6)]
+hulla <- subset(hulla, hulla$Date > "2009-12-31")
+colnames(hulla) <- c("Date", "hulla")
+
+fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")
+quote <- c(1:2922)
+# Cargar como valor inicial valor mas antiguo de la serie de tiempo
+last_quote <- hulla[dim(hulla)[1],2]
+
+for(i in 1:2922)
+{if(length(hulla[which(hulla$Date == fechas[i]), ]$hulla))
+{quote[i] <- hulla[which(hulla$Date == fechas[i]), ]$hulla
+last_quote <- hulla[which(hulla$Date == fechas[i]), ]$hulla}
+  else
+  {quote[i] <- last_quote}
+}
+
+# Build into a time series
+hulla_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
+plot(decompose(hulla_ts))
+save(hulla_ts, file = "data/hulla_ts")
+
+# Build into data frame
+hulla_df <- data.frame(fechas, quote)
+colnames(hulla_df) = c("Date", "hulla")
+save(hulla_df, file = "data/hulla_df")
+# EOC
+\end{lstlisting}
+
+\subsection{Programa buildNiquel.R}
+El siguiente programa construye la serie de tiempo níquel con las cotizaciones mundiales de la tonelada métrica de ferroníquel.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/buildNiquel.R
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Construye serie de datos del niquel
+
+library(Quandl)
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+
+Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
+niquel_data <- Quandl("ODA/PNICK_USD")
+# niquel_data <- Quandl("LME/PR_NI") FUENTE ALTERNA PERO INCOMPLETA
+
+# Limpiar serie de tiempo niquel en su data.frame
+# niquel_data <- niquel_data[, c(1,2)]
+niquel <- subset(niquel_data, niquel_data$Date > "2009-12-31")
+#niquel <- na.omit(niquel)
+colnames(niquel) <- c("Date", "niquel")
+
+fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")
+quote <- c(1:2922)
+# Cargar como valor inicial valor mas antiguo de la serie de tiempo
+last_quote <- niquel[dim(niquel)[1],2]
+
+for(i in 1:2922)
+{if(length(niquel[which(niquel$Date == fechas[i]), ]$niquel))
+{quote[i] <- niquel[which(niquel$Date == fechas[i]), ]$niquel
+last_quote <- niquel[which(niquel$Date == fechas[i]), ]$niquel}
+  else
+  {quote[i] <- last_quote}
+}
+
+# Build into a time series
+niquel_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
+plot(decompose(niquel_ts))
+save(niquel_ts, file = "data/niquel_ts")
+
+# Build into data frame
+niquel_df <- data.frame(fechas, quote)
+colnames(niquel_df) = c("Date", "niquel")
+save(niquel_df, file = "data/niquel_df")
+# EOC
+\end{lstlisting}
+
+\subsection{Programa buildOro.R}
+El siguiente programa construye la serie de tiempo oro con los precios de cotización de la onza de oro Troy.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/buildOro.R
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Construye serie de datos oro
+
+library(Quandl)
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+
+Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
+gold_data <- Quandl("WGC/GOLD_DAILY_USD")
+
+# Limpiar serie de tiempo GOLD en su data.frame
+oro <- subset(gold_data, gold_data$Date > "2009-12-31")
+colnames(oro) <- c("Date", "oro")
+
+fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")
+quote <- c(1:2922)
+# Cargar como valor inicial valor mas antiguo de la serie de tiempo
+last_quote <- oro[dim(oro)[1],2]
+
+for(i in 1:2922)
+{if(length(oro[which(oro$Date == fechas[i]), ]$oro))
+{quote[i] <- oro[which(oro$Date == fechas[i]), ]$oro
+last_quote <- oro[which(oro$Date == fechas[i]), ]$oro}
+  else
+  {quote[i] <- last_quote}
+}
+
+# Build into a time series
+oro_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
+plot(decompose(oro_ts))
+save(oro_ts, file = "data/oro_ts")
+
+# Build into data frame
+oro_df <- data.frame(fechas, quote)
+colnames(oro_df) = c("Date", "oro")
+save(oro_df, file = "data/oro_df")
+# EOC
+\end{lstlisting}
+
+\subsection{Programa buildPalma.R}
+El siguiente programa construye la serie de tiempo palma, con las cotizaciones mundiales del galon de aceite de palma.
+
+\begin{lstlisting}[language=R]
+# buildPalma.R
+# 2018-08-15
+# Ariel E. Meilij
+# UBJ - DBA
+
+# Build palm oil time series and expand
+# 2010-01-01 thru 2017-12-31
+# Fill-in NA's or 0 values
+# Last known quote takes precedence
+
+library(Quandl)
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+
+Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
+palma_data <- Quandl("ODA/PPOIL_USD")
+
+palma <- subset(palma_data, palma_data$Date > "2009-12-01")
+colnames(palma) <- c("Date", "palma")
+
+fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")
+quote <- c(1:2922)
+last_quote <- palma[dim(palma)[1],2]
+
+for(i in 1:2922)
+{if(length(palma[which(palma$Date == fechas[i]), ]$palma))
+  {quote[i] <- palma[which(palma$Date == fechas[i]), ]$palma
+  last_quote <- palma[which(palma$Date == fechas[i]), ]$palma}
+      else
+  {quote[i] <- last_quote}
+}
+
+qplot(x = fechas, y = quote, geom = "line", main = "Cotizacion Aceite de Palma (2010-2017)")
+
+# Build into a time series
+palma_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
+plot(decompose(palma_ts))
+save(palma_ts, file = "data/palma_ts")
+
+# Build into data frame
+palma_df <- data.frame(fechas, quote)
+colnames(palma_df) = c("Date", "palma")
+save(palma_df, file = "data/palma_df")
+
+# EOC
+\end{lstlisting}
+
+\subsection{Programa buildPolipropileno.R}
+El siguiente programa construye la serie polipropileno con las cotizaciones mundiales de la tonelada métrica de polipropileno.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/buildPolipropileno.R
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Construye serie de datos prolipropileno
+
+library(Quandl)
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+
+Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
+polipropileno_data <- Quandl("FRED/WPU091303223")
+
+# Limpiar serie de tiempo polipropileno en su data.frame
+polipropileno <- subset(polipropileno_data, polipropileno_data$Date > "2009-12-31")
+colnames(polipropileno) <- c("Date", "polipropileno")
+
+fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")
+quote <- c(1:2922)
+# Cargar como valor inicial valor mas antiguo de la serie de tiempo
+last_quote <- polipropileno[dim(polipropileno)[1],2]
+
+for(i in 1:2922)
+{if(length(polipropileno[which(polipropileno$Date == fechas[i]), ]$polipropileno))
+{quote[i] <- polipropileno[which(polipropileno$Date == fechas[i]), ]$polipropileno
+last_quote <- polipropileno[which(polipropileno$Date == fechas[i]), ]$polipropileno}
+  else
+  {quote[i] <- last_quote}
+}
+
+# Build into a time series
+polipropileno_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
+plot(decompose(polipropileno_ts))
+save(polipropileno_ts, file = "data/polipropileno_ts")
+
+# Build into data frame
+polipropileno_df <- data.frame(fechas, quote)
+colnames(polipropileno_df) = c("Date", "polipropileno")
+save(polipropileno_df, file = "data/polipropileno_df")
+# EOC
+\end{lstlisting}
+
+\subsection{Programa buildWti.R}
+El siguiente programa construye la serie de tiempo wti, que es el resultante de las cotizaciones mundiales del barril de petroleo tipo West Texas.
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/buildWti.R
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Construye serie de datos petroleo WTI
+
+library(Quandl)
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+
+Quandl.api_key("KzzS8Vfxkw1ZgTWgU4jH")
+wti_data <- Quandl("EIA/PET_RWTC_D")
+
+# Limpiar serie de tiempo wti en su data.frame
+wti <- subset(wti_data, wti_data$Date > "2009-12-31")
+colnames(wti) <- c("Date", "wti")
+
+fechas <- seq(as.Date("2010-01-01"), as.Date("2017-12-31"), "days")
+quote <- c(1:2922)
+# Cargar como valor inicial valor mas antiguo de la serie de tiempo
+last_quote <- wti[dim(wti)[1],2]
+
+for(i in 1:2922)
+{if(length(wti[which(wti$Date == fechas[i]), ]$wti))
+{quote[i] <- wti[which(wti$Date == fechas[i]), ]$wti
+last_quote <- wti[which(wti$Date == fechas[i]), ]$wti}
+  else
+  {quote[i] <- last_quote}
+}
+
+# Build into a time series
+wti_ts <- ts(quote, start=c(2010,1,1), end=c(2017,12,31), frequency=365)
+plot(decompose(wti_ts))
+save(wti_ts, file = "data/wti_ts")
+
+# Build into data frame
+wti_df <- data.frame(fechas, quote)
+colnames(wti_df) = c("Date", "wti")
+save(wti_df, file = "data/wti_df")
+# EOC
+\end{lstlisting}
+
+\subsection{visualRegresoresTS.R}
+El siguiente programa utiliza un gráfico compuesto para aplicar técnicas \emph{EDA} de análisis visual y verificar la integridad de las series de tiempo antes de aplicar los algoritmos de aprendizaje automatizado.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/visualRegresoresTS
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF EDA regresores TRM en forma de serie de tiempo
+
+# Carga de librerias necesarias
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+
+# Cargar data frames en memoria
+load("data/trm_df")
+load("data/palma_df")
+load("data/oro_df")
+load("data/wti_df")
+load("data/cafe_df")
+load("data/banana_df")
+load("data/niquel_df")
+load("data/gasoil_df")
+load("data/polipropileno_df")
+load("data/hulla_df")
+load("data/carbon_df")
+
+# Multiple Graph
+graf1 <- ggplot(trm_df, aes(x = Date, y = trm)) + geom_line(color = "#00AFBB", size = 1) +
+  xlab("Fechas") + ylab("Cotizacion TRM")
+graf2 <- ggplot(palma_df, aes(x = Date, y = palma)) + geom_line(color = "#00AFBB", size = 1) +
+  xlab("Fechas") + ylab("Cotizacion Aceite de Palma")
+graf3 <- ggplot(oro_df, aes(x = Date, y = oro)) + geom_line(color = "#00AFBB", size = 1) +
+  xlab("Fechas") + ylab("Cotizacion Oro")
+graf4 <- ggplot(wti_df, aes(x = Date, y = wti)) + geom_line(color = "#00AFBB", size = 1) +
+  xlab("Fechas") + ylab("Cotizacion Petroleo WTI")
+graf5 <- ggplot(cafe_df, aes(x = Date, y = cafe)) + geom_line(color = "#00AFBB", size = 1) +
+  xlab("Fechas") + ylab("Cotizacion Cafe")
+graf6 <- ggplot(banana_df, aes(x = Date, y = banana)) + geom_line(color = "#00AFBB", size = 1) +
+  xlab("Fechas") + ylab("Cotizacion Banano")
+graf7 <- ggplot(niquel_df, aes(x = Date, y = niquel)) + geom_line(color = "#00AFBB", size = 1) +
+  xlab("Fechas") + ylab("Cotizacion Ferroniquel")
+graf8 <- ggplot(gasoil_df, aes(x = Date, y = gasoil)) + geom_line(color = "#00AFBB", size = 1) +
+  xlab("Fechas") + ylab("Cotizacion Gasoil")
+graf9 <- ggplot(polipropileno_df, aes(x = Date, y = polipropileno)) + geom_line(color = "#00AFBB", size = 1) +
+  xlab("Fechas") + ylab("Cotizacion Polipropileno")
+graf10 <- ggplot(hulla_df, aes(x = Date, y = hulla)) + geom_line(color = "#00AFBB", size = 1) +
+  xlab("Fechas") + ylab("Cotizacion Hulla Termica")
+graf11 <- ggplot(carbon_df, aes(x = Date, y = carbon)) + geom_line(color = "#00AFBB", size = 1) +
+  xlab("Fechas") + ylab("Cotizacion Carbon")
+
+ggarrange(graf1, graf2, graf3, graf4, graf5, graf6, graf7, graf8, graf9, graf10, graf11 + rremove("x.text"),
+          labels = c("TRM", "PALMA", "ORO", "WTI", "CAFE", "BANANA", "FERRONIQUEL", "GASOIL", "POLIPROPILENO", "HULLA TERMICA", "CARBON" ),
+          ncol = 3, nrow = 4)
+\end{lstlisting}
+
+\subsection{Programa testMLRegression.R}
+El siguiente programa fue utilizado como punto intermedio en el trabajo de laboratorio para evaluar el potencial de un modelo de regresión lineal y los regresores candidatos. El mismo no utiliza aprendizaje automatizado sino que aplica un modelo tradicional de regresión lineal multivariable.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/testMLRegression
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Evalua Modelo de Regresion Multivariable con Machine Learning
+# Utiliza biblioteca CARET para aprendizaje automatizado
+
+# Carga de librerias necesarias
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+library(caret)
+
+# Cargar data frames en memoria
+load("data/trm_df")
+load("data/palma_df")
+load("data/oro_df")
+load("data/wti_df")
+load("data/cafe_df")
+load("data/banana_df")
+load("data/niquel_df")
+load("data/gasoil_df")
+load("data/polipropileno_df")
+load("data/hulla_df")
+load("data/carbon_df")
+
+# Merge data frames
+df1 <- merge(trm_df, palma_df)
+df1 <- merge(df1, oro_df)
+df1 <- merge(df1, wti_df)
+df1 <- merge(df1, cafe_df)
+df1 <- merge(df1, banana_df)
+df1 <- merge(df1, niquel_df)
+df1 <- merge(df1, gasoil_df)
+df1 <- merge(df1, polipropileno_df)
+df1 <- merge(df1, hulla_df)
+df1 <- merge(df1, carbon_df)
+summary(df1)
+
+# Eliminar datos, no hacen falta para este ejercicio
+df_data <- df1[, 2:12]
+rm(df1, trm_df, palma_df, oro_df, wti_df, cafe_df, banana_df, niquel_df, gasoil_df, polipropileno_df, hulla_df, carbon_df)
+
+# Crear juegos de datos para entrenamiento y prueba
+set.seed(7556014)
+inTrain <- createDataPartition(y = df_data$trm, p = 0.7, list = FALSE)
+training <- df_data[inTrain, ]
+testing <- df_data[-inTrain, ]
+
+# Comenzar entrenamiento
+modelFit <- train(trm ~ ., data = training, method = "glm")
+
+# Graficas de verificacion de modelo
+plot(modelFit$finalModel)
+plot(modelFit$finalModel, 4, pch = 19, cex = 0.5, col = "#00000010")
+plot(modelFit$finalModel$residuals, pch = 19)
+abline(0,0, col = "red")
+
+# Plot Data Entrenada en Prediccion vs. Valores Reales
+valores_reales <- df_data[inTrain, 1]
+valores_prediccion <- predict(modelFit, training[,2:11])
+testVector <- data.frame(valores_prediccion, valores_reales)
+ggplot(aes(x = valores_prediccion, y = valores_reales), data = testVector) +
+  geom_point(alpha = 0.05)  + geom_smooth(method='lm',formula=y~x, colour = "green") +
+  labs(x = "Valores Prediccion", y = "Valores Reales",
+       title = "Valores Reales vs. Valores Prediccion Modelo Entrenado Regresion Multivariable")
+
+# Plot Data de Prueba vs. Valores Reales
+valores_reales <- df_data[-inTrain, 1]
+valores_prediccion <- predict(modelFit, testing[,2:11])
+testVector <- data.frame(valores_prediccion, valores_reales)
+ggplot(aes(x = valores_prediccion, y = valores_reales), data = testVector) +
+  geom_point(alpha = 0.05)  + geom_smooth(method='lm',formula=y~x, colour = "yellow") +
+  labs(x = "Valores Prediccion", y = "Valores Reales",
+       title = "Valores Reales vs. Valores Prediccion Data Validacion Regresion Multivariable")
+
+# Test individual de valores aleatorios comparativos
+indices_aleatorios <-  sample.int(dim(inTrain)[1], 20)
+y_values <- df_data[indices_aleatorios, 1]
+y_hat <- predict(modelFit, df_data[indices_aleatorios, 2:11])
+testMatrix <- data.frame(y_values, y_hat, round(((y_hat/y_values)-1)*100,1))
+colnames(testMatrix) = c("VALOR REAL", "PREDICCION", "ERROR %")
+print(testMatrix)
+print(mean(testMatrix$`ERROR %`))
+
+# Grafica Residuales
+residuales <- modelFit$finalModel$residuals
+indice <- seq(1:2047)
+data_residuales <- data.frame(residuales, indice)
+ggplot(aes(y = residuales, x = indice), data = data_residuales) + geom_jitter(alpha = 1/05) +
+  labs(y = "Error Aleatorio", x = "", title = "Valores Residuales")
+\end{lstlisting}
+
+\subsection{Programa testAutoARIMA.R}
+El siguiente programa construye el modelo de pronostico ARIMA utilizando la biblioteca de aprendizaje automatizado \emph{forecast}.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/testAutoARIMA
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Pronostico de la TRM utilizando machine learning con ARIMA
+
+library(forecast)
+library(ggplot2)
+
+load("data/trm_ts")
+
+# Descomposicion de serie de tiempo TRM
+plot(decompose(trm_ts))
+
+# Evaluar autocorrelacion
+par(mfrow=c(1,2))
+acf(trm_ts)
+pacf(trm_ts)
+
+# Utilizar funcion auto.arima para modelo automatico ARIMA
+modelFit <- auto.arima(trm_ts)
+
+# Plot Data de Prueba vs. Valores Reales
+valores_reales <- trm_ts
+valores_prediccion <- modelFit$fitted
+testVector <- data.frame(valores_prediccion, valores_reales)
+ggplot(aes(x = valores_prediccion, y = valores_reales), data = testVector) +
+  geom_point(alpha = 0.05) +
+  geom_smooth(method='lm',formula=y~x, colour = "gray") +
+  labs(x = "Valores Prediccion", y = "Valores Reales",
+       title = "Valores Reales vs. Valores Prediccion ARIMA(3,1,2) para TRM 2010-2017 ")
+
+# Test individual de valores aleatorios comparativos
+indices_aleatorios <-  sample.int(length(trm_ts), 100)
+y_values <- trm_ts[indices_aleatorios]
+y_hat <- modelFit$fitted[indices_aleatorios]
+testMatrix <- data.frame(y_values, y_hat, round(((y_hat/y_values)-1)*100,1))
+colnames(testMatrix) = c("VALOR REAL", "PREDICCION", "ERROR %")
+print(testMatrix)
+print(mean(testMatrix$`ERROR %`))
+
+# Plot del Test
+qplot(y = y_values, x = y_hat, data = testMatrix, show.legend = TRUE,
+      main = "Test Aleatorio Valores Reales vs. Prediccion") + geom_smooth(formula = y~x)
+\end{lstlisting}
+
+\subsection{Programa testMLRegression.R}
+El siguiente programa utiliza la biblioteca \emph{CARET} para crear un modelo de regresión multivariable con aprendizaje automatizado.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/testMLRegression
+# FECHA 19/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Evalua Modelo de Regresion Multivariable con Machine Learning
+# Utiliza biblioteca CARET para aprendizaje automatizado
+
+# Carga de librerias necesarias
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+library(caret)
+
+# Cargar data frames en memoria
+load("data/trm_df")
+load("data/palma_df")
+load("data/oro_df")
+load("data/wti_df")
+load("data/cafe_df")
+load("data/banana_df")
+load("data/niquel_df")
+load("data/gasoil_df")
+load("data/polipropileno_df")
+load("data/hulla_df")
+load("data/carbon_df")
+
+# Merge data frames
+df1 <- merge(trm_df, palma_df)
+df1 <- merge(df1, oro_df)
+df1 <- merge(df1, wti_df)
+df1 <- merge(df1, cafe_df)
+df1 <- merge(df1, banana_df)
+df1 <- merge(df1, niquel_df)
+df1 <- merge(df1, gasoil_df)
+df1 <- merge(df1, polipropileno_df)
+df1 <- merge(df1, hulla_df)
+df1 <- merge(df1, carbon_df)
+summary(df1)
+
+# Eliminar datos, no hacen falta para este ejercicio
+df_data <- df1[, 2:12]
+rm(df1, trm_df, palma_df, oro_df, wti_df, cafe_df, banana_df, niquel_df, gasoil_df, polipropileno_df, hulla_df, carbon_df)
+
+# Crear juegos de datos para entrenamiento y prueba
+set.seed(7556014)
+inTrain <- createDataPartition(y = df_data$trm, p = 0.7, list = FALSE)
+training <- df_data[inTrain, ]
+testing <- df_data[-inTrain, ]
+
+# Comenzar entrenamiento
+modelFit <- train(trm ~ ., data = training, method = "glm")
+
+# Graficas de verificacion de modelo
+plot(modelFit$finalModel)
+plot(modelFit$finalModel, 4, pch = 19, cex = 0.5, col = "#00000010")
+plot(modelFit$finalModel$residuals, pch = 19)
+abline(0,0, col = "red")
+
+# Plot Data Entrenada en Prediccion vs. Valores Reales
+valores_reales <- df_data[inTrain, 1]
+valores_prediccion <- predict(modelFit, training[,2:11])
+testVector <- data.frame(valores_prediccion, valores_reales)
+ggplot(aes(x = valores_prediccion, y = valores_reales), data = testVector) +
+  geom_point(alpha = 0.05)  + geom_smooth(method='lm',formula=y~x, colour = "green") +
+  labs(x = "Valores Prediccion", y = "Valores Reales",
+       title = "Valores Reales vs. Valores Prediccion Modelo Entrenado Regresion Multivariable")
+
+# Plot Data de Prueba vs. Valores Reales
+valores_reales <- df_data[-inTrain, 1]
+valores_prediccion <- predict(modelFit, testing[,2:11])
+testVector <- data.frame(valores_prediccion, valores_reales)
+ggplot(aes(x = valores_prediccion, y = valores_reales), data = testVector) +
+  geom_point(alpha = 0.05)  + geom_smooth(method='lm',formula=y~x, colour = "yellow") +
+  labs(x = "Valores Prediccion", y = "Valores Reales",
+       title = "Valores Reales vs. Valores Prediccion Data Validacion Regresion Multivariable")
+
+# Test individual de valores aleatorios comparativos
+indices_aleatorios <-  sample.int(dim(inTrain)[1], 20)
+y_values <- df_data[indices_aleatorios, 1]
+y_hat <- predict(modelFit, df_data[indices_aleatorios, 2:11])
+testMatrix <- data.frame(y_values, y_hat, round(((y_hat/y_values)-1)*100,1))
+colnames(testMatrix) = c("VALOR REAL", "PREDICCION", "ERROR %")
+print(testMatrix)
+print(mean(testMatrix$`ERROR %`))
+
+# Grafica Residuales
+residuales <- modelFit$finalModel$residuals
+indice <- seq(1:2047)
+data_residuales <- data.frame(residuales, indice)
+ggplot(aes(y = residuales, x = indice), data = data_residuales) + geom_jitter(alpha = 1/05) +
+  labs(y = "Error Aleatorio", x = "", title = "Valores Residuales")
+\end{lstlisting}
+
+\subsection{Programa testStackedModelVariant.R}
+El siguiente programa fue la variante final del modelo ensamblado de aprendizaje automatizado que utiliza \emph{GLM} como el método final de ensamblaje. El programa original (disponible en el repositorio \emph{GitHub}) utiliza \emph{GAM}, pero los coeficientes eran poco visibles con este proceso y los resultados finales eran casi idénticos.
+
+\begin{lstlisting}[language=R]
+# UBJ Doctorado en Administracion Gerencial
+# Modelo Predictivo de la TRM Utilizando Machine Learning
+# LIB ubj/code/testStackedModelVariant
+# FECHA 31/08/2018
+# Ariel E. Meilij
+#
+# BRIEF Modelo Ensamblado de Prediccion de la TRM
+# VARIANTE Utiliza juego de test para crear tercer modelo
+
+# Carga de librerias necesarias
+library(tseries)
+library(ggplot2)
+library(ggfortify)
+library(Hmisc)
+library(corrplot)
+library(PerformanceAnalytics)
+library(reshape2)
+library(ggpubr)
+library(caret)
+library(forecast)
+
+# Cargar data frames en memoria
+load("data/trm_df")
+load("data/palma_df")
+load("data/oro_df")
+load("data/wti_df")
+load("data/cafe_df")
+load("data/banana_df")
+load("data/niquel_df")
+load("data/gasoil_df")
+load("data/polipropileno_df")
+load("data/hulla_df")
+load("data/carbon_df")
+
+# Merge data frames
+df1 <- merge(trm_df, palma_df)
+df1 <- merge(df1, oro_df)
+df1 <- merge(df1, wti_df)
+df1 <- merge(df1, cafe_df)
+df1 <- merge(df1, banana_df)
+df1 <- merge(df1, niquel_df)
+df1 <- merge(df1, gasoil_df)
+df1 <- merge(df1, polipropileno_df)
+df1 <- merge(df1, hulla_df)
+df1 <- merge(df1, carbon_df)
+summary(df1)
+
+# Eliminar datos, no hacen falta para este ejercicio
+rm(trm_df, palma_df, oro_df, wti_df, cafe_df, banana_df, niquel_df, gasoil_df, polipropileno_df, hulla_df, carbon_df)
+
+# Crear juegos de datos para entrenamiento y prueba
+# Cargar juegos de datos
+load("data/trm_ts")
+set.seed(7556014)
+
+# Modelo 1: ARIMA
+modelFitARIMA <- auto.arima(trm_ts)
+
+# Model 2: Regresion Multivariable
+inTrain <- createDataPartition(y = df1$trm, p = 0.7, list = FALSE)
+training <- df1[inTrain, ]
+testing <- df1[-inTrain, ]
+modelFitGLM <- train(trm ~ palma + oro + wti + cafe + banana + niquel +
+                       gasoil + polipropileno + hulla + carbon,
+                     data = training, method = "glm")
+
+# Crear data frame de modelos ensamblados
+# variable independiente Y : TRM
+# variables dependientes Xi : predicciones
+# UTILIZAR DATOS TEST!
+predGLM <- predict(modelFitGLM, testing)
+
+# Para la serie de tiempo extraer solo las predicciones que
+# coinciden con el juego de datos de test *lo opuesto de inTrain
+# guardamos en foo las predicciones como df y leidas como
+# numerico para que funcione (extraer TS es aun dificil en R)
+foo = as.data.frame(as.numeric(modelFitARIMA$fitted))
+predARIMA = foo[-inTrain, ]
+rm(foo)
+
+# Crear data frame datos modelo ensamblado
+df_ensamblado <- data.frame(testing$trm, predARIMA, predGLM)
+colnames(df_ensamblado) = c("trm", "predARIMA", "predGLM")
+
+# Revisar y graficar modelo para verificar integridad de los datos
+summary(df_ensamblado)
+plot(df_ensamblado, main = "Validacion Datos Modelo Ensamblado")
+
+# Entrenar modelo ensamblado con GAM
+modeloEnsamblado <- train(trm ~ ., method = "glm", data = df_ensamblado)
+modeloEnsamblado
+summary(modeloEnsamblado)
+
+# Test individual de valores aleatorios comparativos
+size_b <- dim(testing)[1]
+indices_aleatorios <-  sample.int(size_b, 10)
+y_values <- df_ensamblado[indices_aleatorios, 1]
+y1_hat <- predARIMA[indices_aleatorios]
+y2_hat <- predGLM[indices_aleatorios]
+y3_hat <- modeloEnsamblado$finalModel$fitted.values[indices_aleatorios]
+testMatrix <- data.frame(y_values, y1_hat, y2_hat, y3_hat, round(((y1_hat/y_values)-1)*100,1), round(((y2_hat/y_values)-1)*100,1), round(((y3_hat/y_values)-1)*100,1))
+colnames(testMatrix) = c("VALOR REAL", "Y1_HAT", "Y2_HAT", "Y3_HAT", "ERROR % Y1", "ERROR % Y2", "ERROR % Y3")
+print(testMatrix)
+print(mean(testMatrix$`ERROR % Y1`))
+print(mean(testMatrix$`ERROR % Y2`))
+print(mean(testMatrix$`ERROR % Y3`))
+
+# Grafica Prueba 3 Modelos con Valores Aleatorios
+size_b <- dim(testing)[1]
+indices_aleatorios <-  sample.int(size_b, 100)
+y_values <- df_ensamblado[indices_aleatorios, 1]
+y1_hat <- predARIMA[indices_aleatorios]
+y2_hat <- predGLM[indices_aleatorios]
+y3_hat <- modeloEnsamblado$finalModel$fitted.values[indices_aleatorios]
+
+graf1 = qplot(y_values, y1_hat, geom = c("point", "smooth"))
+graf2 = qplot(y_values, y2_hat, geom = c("point", "smooth"))
+graf3 = qplot(y_values, y3_hat, geom = c("point", "smooth"))
+ggarrange(graf1, graf2, graf3 + rremove("x.text"),
+          labels = c("Valores Reales vs. ARIMA", "Valores Reales vs. GLM", "Valores Reales vs. STACKING"),
+          ncol = 3, nrow = 1)
+
+
+# Grafica del Modelo Ensamblado: Valores Reales vs. Valores Esperados
+this_y <- df_ensamblado$trm
+this_x <- modeloEnsamblado$finalModel$fitted.values
+this_frame <- data.frame(this_y, this_x)
+ggplot(aes(x = this_x, y = this_y), data = this_frame) +
+  geom_point(alpha = 0.1)  + geom_smooth(method='lm',formula=y~x, colour = "orange",
+                                          show.legend = TRUE) +
+  labs(x = "Valores Prediccion Modelo Ensamblado", y = "Valores Reales TRM",
+       title = "Valores Reales vs. Valores Prediccion | Validacion Modelo Ensamblado")
+
+# Tabla comparativa de valores
+rmse_ARIMA <- summary(modelFitARIMA)[2]
+rmse_GLM <- modelFitGLM$results$RMSE
+rmse_STACKED <- as.double(modeloEnsamblado$results$RMSE[1])
+R2_ARIMA <- as.double(summary(lm(as.double(trm_ts) ~ modelFitARIMA$fitted))[8])
+R2_GLM <- modelFitGLM$results$Rsquared
+R2_STACKED <- modeloEnsamblado$results$Rsquared[1]
+
+tabla_comparativa <- data.frame(c(rmse_ARIMA,R2_ARIMA),
+                                c(rmse_GLM,R2_GLM),
+                                c(rmse_STACKED,R2_STACKED))
+
+colnames(tabla_comparativa) <- c("ARIMA", "GLM", "ENSAMBLADO")
+rownames(tabla_comparativa)[1] <- c("RMSE")
+rownames(tabla_comparativa)[2] <- c("R2")
+tabla_comparativa
+
+# End of Code
+\end{lstlisting}
