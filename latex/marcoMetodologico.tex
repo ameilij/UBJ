@@ -20,7 +20,7 @@ Las siguientes son hipótesis específicas de trabajo.
 
 \begin{itemize}
 	\item Existen una cantidad finita - e inferior a la decena - de productos de exportación que fungen como variables de agregación al producto bruto interno de Colombia y que son necesarias para la consecución de un modelo predictivo parsimonioso de la TRM.
-	\item El valor de la TRM, tal cual lo ja la Superintendencia Financiera de Colombia, no es sino el reflejo de los movimientos de estas variables de aportación que ayudan a modelar y controlar la tasa de cambio.
+	\item El valor de la TRM, tal cual lo fija la Superintendencia Financiera de Colombia, no es sino el reflejo de los movimientos de estas variables de aportación que ayudan a modelar y controlar la tasa de cambio.
 	\item El comportamiento pasado de dichas variables puede ser utilizado para entrenar y generar un modelo estadístico predictivo parsimonioso utilizando aprendizaje automatizado cuyo margen de error sea inferior al 5\% (o, en otros términos, \(p < 0.05\)).
 	\item El modelo final no es único sino es el resultado del ensamblaje de varios modelos matemáticos predictivos y dinámico en su concepción ya que puede ser afectado por la acumulación de nuevos datos de retroalimentación a posteriori (N. Del A. esta hipótesis es especulativa en naturaleza, y experimentación matemática precisa es necesaria para validarla).
 \end{itemize}
@@ -35,7 +35,7 @@ Enfoque cuantitativo experimental utilizando Machine Learning.
 	\item 70\% datos de entrenamiento
 	\item 30\% datos de evaluación cruzada
 \end{itemize}
-
+    
 \section{Descripción del Método}
 La metodología utilizada para el trabajo de investigación se apega estrictamente a la formalización de la hipótesis de trabajo:
 
@@ -50,7 +50,7 @@ Donde:
     c_{2} & : & f(y_{t}) = \beta_{0} + \beta_{1}x_{t-1} + \beta_{2}x_{t-2} + \cdots + \beta_{n}x_{t-n} + \epsilon_{t}
 \end{eqnarray}
 
-Por lo tanto la metodología del estudio se puede resumir en un método ensamblado de aprendizaje automatizado resultante de la composición de dos aprendices: uno basado en un regresor lineal y el segundo basado en un pronostico ARIMA. Los valores estimados para cada caso del arreglo de datos se utilizan como variable independiente y predictor del modelo ensamblado, con la variable dependiente inmutable. El modelo ensamblado entonces se entrena nuevamente con los resultados de las predicciones contra los valores reales \cite{leek}.
+Por lo tanto la metodología del estudio se puede resumir en un método ensamblado de aprendizaje automatizado resultante de la composición de dos aprendices: uno basado en un regresor lineal y el segundo basado en un pronostico ARIMA. Los valores estimados para cada caso del arreglo de datos se utilizan como variable independiente y predictor del modelo ensamblado, con la variable dependiente inmutable. El modelo ensamblado entonces se entrena nuevamente con los resultados de las predicciones contra los valores reales \cite{leek}.   
 
 Podemos resumir el proceso con el siguiente esquema de arquitectura del modelo:
 
@@ -60,37 +60,45 @@ Podemos resumir el proceso con el siguiente esquema de arquitectura del modelo:
     \caption{Proceso de Investigación para el Análisis del Modelo Predictivo (Fuente Propia)}
 \end{figure}
 
-Cada aprendiz es a su vez un modelo de aprendizaje automatizado con su propia metodología de investigación.
+Cada aprendiz es a su vez un modelo de aprendizaje automatizado con su propia metodología de investigación. 
 
 \subsubsection{Aprendiz 1: Modelo de Regresión Lineal}
 \begin{itemize}
 	\item El aprendiz 1 es un modelo de regresión lineal utilizando como variable dependiente el valor de la TRM para cada día del juego de datos y como regresores un arreglo asociado de cotizaciones del precio promedio mundial de los once productos principales de la canasta de exportación de Colombia entre los años 2010 y 2017.
-	\item Para el juego de entrenamiento se selecciona un 70\% de los datos disponibles. Dicha selección se hace con la ayuda de la biblioteca CARET de R para funciones de aprendizaje automatizado.
-	\item Para el juego de validación se selecciona un 30\% de los datos disponibles. Dicha selección también se hace con la ayuda de la biblioteca CARET de R para funciones de aprendizaje automatizado.
-	\item La variable SEED se prefigura al valor arbitrario \emph{7556014} para propósitos de reproducibilidad de los datos.
-	\item El aprendizaje automatizado no asegura que todos los regresores sean útiles o necesarios para una predicción dentro de los valores de confianza esperados. Existe la posibilidad que un número limitado de regresores cumpla con los mismos valores de predicción que la totalidad de los mismos y que el modelo generalice mejor al tener menos regresores (disminuyendo la inflación de la varianza como efecto secundario).
-	\item Para determinar el número óptimo de regresores se procedió a armar el modelo de aprendizaje automatizado sumando un regresor a la vez y analizando los valores del coeficiente de determinación y coeficiente de correlación. Los valores finales del error mínimo cuadrático de cada modelo se comparan para determinar la mejor combinación de regresores.
+	\item Para el juego de entrenamiento se selecciona un 70\% de los datos disponibles. Dicha selección se hace con la ayuda de la biblioteca CARET de R para funciones de aprendizaje automatizado. 
+	\item Para el juego de validación se selecciona un 30\% de los datos disponibles. Dicha selección también se hace con la ayuda de la biblioteca CARET de R para funciones de aprendizaje automatizado. 
+	\item La variable SEED se prefigura al valor arbitrario \emph{7556014} para propósitos de reproducibilidad de los datos. 
+	\item El aprendizaje automatizado no asegura que todos los regresores sean útiles o necesarios para una predicción dentro de los valores de confianza esperados. Existe la posibilidad que un número limitado de regresores cumpla con los mismos valores de predicción que la totalidad de los mismos y que el modelo generalice mejor al tener menos regresores (disminuyendo la inflación de la varianza como efecto secundario). 
+	\item Para determinar el número óptimo de regresores se procedió a armar el modelo de aprendizaje automatizado sumando un regresor a la vez y analizando los valores del coeficiente de determinación y coeficiente de correlación. Los valores finales del error mínimo cuadrático de cada modelo se comparan para determinar la mejor combinación de regresores. 
 	\item Como segunda validación para la combinación correcta de regresores, se utilizó el análisis \emph{Step\_AIC} (reducción óptima de regresores utilizando análisis combinatorio y el Criterio de Información de Aikake) con la biblioteca \emph{STEP\_AIC} de \emph{R}. El método \emph{STEP\_AIC} es intensivo en recursos de computación y no siempre arroja resultados superiores a los que un investigador pueda armar a mano utilizando técnicas visuales de exploración de datos.
 \end{itemize}
 
 \subsubsection{Aprendiz 2: Modelo ARIMA}
 \begin{itemize}
 	\item El aprendiz 2 es un modelo de pronostico ARIMA utilizando como serie de tiempo el valor de la TRM para cada día del juego de datos entre los años 2010 y 2017.
-	\item Para el juego de entrenamiento se selecciona un 70\% de los datos disponibles. Dicha selección se hace con la ayuda de la biblioteca FORECAST de R para funciones de aprendizaje automatizado utilizando series de tiempo \cite{hyndman}.
-	\item Para el juego de validación se selecciona un 30\% de los datos disponibles. Dicha selección también se hace con la ayuda de la biblioteca FORECAST de R para funciones de aprendizaje automatizado de series de tiempo.
-	\item La variable SEED se prefigura al valor arbitrario \emph{7556014} para propósitos de reproducibilidad de los datos.
+	\item Para el juego de entrenamiento se selecciona un 70\% de los datos disponibles. Dicha selección se hace con la ayuda de la biblioteca FORECAST de R para funciones de aprendizaje automatizado utilizando series de tiempo \cite{hyndman}. 
+	\item Para el juego de validación se selecciona un 30\% de los datos disponibles. Dicha selección también se hace con la ayuda de la biblioteca FORECAST de R para funciones de aprendizaje automatizado de series de tiempo. 
+	\item La variable SEED se prefigura al valor arbitrario \emph{7556014} para propósitos de reproducibilidad de los datos. 
 \end{itemize}
 
 \subsubsection{Clasificador Ensamblado}
 \begin{itemize}
-	\item El clasificador ensamblado se toma como un arreglo de una variable dependiente (el valor de la TRM para cada día correspondiente al juego de datos) y dos variables independientes (los resultados de la predicción de los dos aprendices).
+	\item El clasificador ensamblado se toma como un arreglo de una variable dependiente (el valor de la TRM para cada día correspondiente al juego de datos) y dos variables independientes (los resultados de la predicción de los dos aprendices). 
 	\item Para el juego de entrenamiento se selecciona el 100\% de los datos disponibles. Dicha selección se hace con los resultados de las pruebas de evaluación de los dos aprendices iniciales \cite{popularEnsemble}.
-	\item La variable SEED se prefigura al valor arbitrario \emph{7556014} para propósitos de reproducibilidad de los datos.
+	\item La variable SEED se prefigura al valor arbitrario \emph{7556014} para propósitos de reproducibilidad de los datos. 
 	\item El modelo se resuelve utilizando la metodología de Stacking como un modelo de regresión lineal \cite{smolyakov}.
 \end{itemize}
 
 \subsubsection{Validación del Modelo Ensamblado}
 Se espera del modelo final un nivel de desempeño con predicciones dentro de un \(\alpha \leq 0.05\). Para tal fin dentro del diseño de investigación se valida el modelo sometiendo el mismo a un juego aleatorio de 100 datos de muestra que comprende:
+
+\begin{itemize}
+	\item Resultados de predicción del modelo versus el modelo aprendiz 1 de regresión lineal multivariable.
+	\item Resultados de predicción del modelo ensamblado versus el modelo aprendiz 2 ARIMA. 
+	\item Resultados de predicción del modelo ensamblado versus un intervalo de confianza del 99\%.
+\end{itemize}
+
+El modelo se considera óptimo para producción si pasa las tres pruebas de validación.  
 
 \subsubsection{Esquema Visual del Modelo Predictivo}
 El siguiente es el esquema visual del modelo predictivo donde se muestra como los resultados de los aprendices del modelo ARIMA y de regresión lineal múltiple se convierten en las entradas del modelo ensamblado.
@@ -99,14 +107,6 @@ El siguiente es el esquema visual del modelo predictivo donde se muestra como lo
 	\centering
 	\includegraphics[width=5in]{images/EsquemaModeloPredictivo.png}	\caption{Esquema Modelo Predictivo}
 \end{figure}
-
-\begin{itemize}
-	\item Resultados de predicción del modelo versus el modelo aprendiz 1 de regresión lineal multivariable.
-	\item Resultados de predicción del modelo ensamblado versus el modelo aprendiz 2 ARIMA.
-	\item Resultados de predicción del modelo ensamblado versus un intervalo de confianza del 99\%.
-\end{itemize}
-
-El modelo se considera óptimo para producción si pasa las tres pruebas de validación.
 
 \section{Diseño de la Instrumentación}
 El diseño de la instrumentación para el trabajo de laboratorio incluirá programas de software matemático para:
@@ -197,7 +197,7 @@ df$p.value
 \end{lstlisting}
 
 \subsection{Regresión Lineal con Calce de la Función de Predicción}
-Los modelos de regresión lineal utilizan la biblioteca \emph{Quandl} para la extracción de datos y deben hacer la transformación del arreglo de datos a una serie de tiempos. Los datos serán colapsados de forma mensual y se revisará la fórmula de la función de calce para el coeficiente de correlación y determinación \cite{narayanachar}.
+Los modelos de regresión lineal utilizan la biblioteca \emph{Quandl} para la extracción de datos y deben hacer la transformación del arreglo de datos a una serie de tiempos. Los datos serán colapsados de forma mensual y se revisará la fórmula de la función de calce para el coeficiente de correlación y determinación \cite{narayanachar}. 
 
 \begin{lstlisting}[language=R]
 # Load oil prices as time series
@@ -220,18 +220,18 @@ Call:
 lm(formula = wti ~ time(wti))
 
 Residuals:
-    Min      1Q  Median      3Q     Max
--45.031 -13.929  -0.368  11.399  80.925
+    Min      1Q  Median      3Q     Max 
+-45.031 -13.929  -0.368  11.399  80.925 
 
 Coefficients:
-              Estimate Std. Error t value Pr(>|t|)
+              Estimate Std. Error t value Pr(>|t|)    
 (Intercept) -4849.3862   213.2634  -22.74   <2e-16 ***
 time(wti)       2.4439     0.1065   22.94   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 19.43 on 384 degrees of freedom
-Multiple R-squared:  0.5782,	Adjusted R-squared:  0.5771
+Multiple R-squared:  0.5782,	Adjusted R-squared:  0.5771 
 F-statistic: 526.4 on 1 and 384 DF,  p-value: < 2.2e-16
 \end{lstlisting}
 
@@ -241,7 +241,7 @@ F-statistic: 526.4 on 1 and 384 DF,  p-value: < 2.2e-16
 	\caption{Descomposición STL Precio Internacional del Café (Fuente Propia)}
 \end{figure}
 
-\subsection{Modelo Predictivo Ensamblado}
+\subsection{Modelo Predictivo Ensamblado} 
 El modelo predictivo ensamblado es el resultado del entrenamiento de un modelo predictivo de regresión lineal y un modelo ARIMA. Ambos modelos se combinan y se entrenan con la variable de valor real en común para ambos \cite{viswanathan}.
 
 \begin{lstlisting}[language=R]
@@ -272,7 +272,7 @@ predDF <- data.frame(TRM = testing$TRM, predVec1, predVec2)
 
 # Modelo combinado (fit)
 combModelFit <- train(TRM ~ ., method = "glm", data = predDF)
-finalPred <- predict(combModelFit, predDF)
+finalPred <- predict(combModelFit, predDF) 
 \end{lstlisting}
 
 \section{Diseño de muestreo}
@@ -280,7 +280,7 @@ finalPred <- predict(combModelFit, predDF)
 Inicialmente, podemos calcular el tamaño de la muestra necesaria para nuestro estudio con la fórmula \cite{mendehall}:
 
 \begin{equation}
-   n =  (N* z^2*p*q)/(E^2*(N-1)+ z^2*p*q)
+   n =  (N* z^2*p*q)/(E^2*(N-1)+ z^2*p*q) 
 \end{equation}
 
 El tamaño total de todas las cotizaciones de la TRM o del precio internacional del petróleo WTI es un número finito. Los mercados funcionan de lunes a viernes, por lo general las cincuenta y dos semanas del año. Para el uso común de la tasa de cambio, esta cifra se usa todos los días, por ejemplo cuando un consumidor usa una tarjeta de crédito y el banco debe referir al valor de la TRM aunque no sea día de operaciones bursátiles. Por lo que el número total de posibles cotizaciones oficiales en un año dado cualesquiera se determinan como:
@@ -289,7 +289,7 @@ El tamaño total de todas las cotizaciones de la TRM o del precio internacional 
     N_{regresor} = 365
 \end{equation}
 
-La fórmula es muy simple y equivale a sustituir cualquier variable regresor (por ejemplo, el valor del petróleo WTI) por los números reales de días del año.
+La fórmula es muy simple y equivale a sustituir cualquier variable regresor (por ejemplo, el valor del petróleo WTI) por los números reales de días del año. 
 
 \begin{equation}
     N_{wti} = 365
@@ -324,12 +324,12 @@ muestra
 [1] 502.9681
 \end{lstlisting}
 
-El tamaño de la muestra es 503 puntos de datos por regresor a utilizar. Sin embargo, dado que los usos de técnicas de Ciencia de Datos nos permiten acceder a la biblioteca Quandl de forma de recolectar el universo entero de datos, utilizaremos los 2,920 puntos de datos para cada regresor, trabajando de esta forma con el universo entero y no la muestra. Este es un buen ejemplo del uso de Big Data \cite{pengMatsui} que no solo aplica a muestras grandes de universos extensos, sino al total de la data de un universo pequeño.
+El tamaño de la muestra es 503 puntos de datos por regresor a utilizar. Sin embargo, dado que los usos de técnicas de Ciencia de Datos nos permiten acceder a la biblioteca Quandl de forma de recolectar el universo entero de datos, utilizaremos los 2,920 puntos de datos para cada regresor, trabajando de esta forma con el universo entero y no la muestra. Este es un buen ejemplo del uso de Big Data \cite{pengMatsui} que no solo aplica a muestras grandes de universos extensos, sino al total de la data de un universo pequeño. 
 
 \subsubsection{Reglas de Imputación de Datos}
-Es común que las bases de datos retornen series de datos incompletas para los días feriados o días sin cambio en la cotización del bien. Para determinar el valor de cualquier día incompleto, la investigación resolvió el método de imputación como la última cotización válida para el regresor.
+Es común que las bases de datos retornen series de datos incompletas para los días feriados o días sin cambio en la cotización del bien. Para determinar el valor de cualquier día incompleto, la investigación resolvió el método de imputación como la última cotización válida para el regresor. 
 
 \subsection{Observaciones Adicionales Sobre el Uso de Muestras dentro de Diseños de Investigación con Regresión Lineal}
-No todos los autores están de acuerdo con el uso de la fórmula tradicional para el cálculo del número de muestras en un estudio de regresión lineal. William Dupont y Walton Plummer han discutido el uso de técnicas alternativas cuando los estudios (sobre todo los estudios clínicos) utilizan regresiones lineales multivariable \cite{dupontPlummer}. Dichas técnicas se apoyan en la identificación de diferentes pendientes en los análisis de regresión versus el uso de coeficientes (argumentando que es más fácil comparar visualmente pendientes versus coeficientes) y el manejo del poder estadístico $1 – \beta$. Sobre este último los autores manifiestan ajustar los niveles de poder para verificar en que momento del cambio se detecta diferencias de la pendiente de una hipótesis contra su hipótesis alternativa dentro de una muestra de n pacientes.
+No todos los autores están de acuerdo con el uso de la fórmula tradicional para el cálculo del número de muestras en un estudio de regresión lineal. William Dupont y Walton Plummer han discutido el uso de técnicas alternativas cuando los estudios (sobre todo los estudios clínicos) utilizan regresiones lineales multivariable \cite{dupontPlummer}. Dichas técnicas se apoyan en la identificación de diferentes pendientes en los análisis de regresión versus el uso de coeficientes (argumentando que es más fácil comparar visualmente pendientes versus coeficientes) y el manejo del poder estadístico $1 – \beta$. Sobre este último los autores manifiestan ajustar los niveles de poder para verificar en que momento del cambio se detecta diferencias de la pendiente de una hipótesis contra su hipótesis alternativa dentro de una muestra de n pacientes. 
 
-Al momento de preparar el diseño del estudio, las herramientas de medición y la muestra, el doctorando ha decidido no profundizar más en métodos menos tradicionales de cálculo de muestras en estudios de regresión lineal, dado que en el caso específico se utilizará la totalidad del universo, haciendo el cálculo de muestra innecesario.
+Al momento de preparar el diseño del estudio, las herramientas de medición y la muestra, el doctorando ha decidido no profundizar más en métodos menos tradicionales de cálculo de muestras en estudios de regresión lineal, dado que en el caso específico se utilizará la totalidad del universo, haciendo el cálculo de muestra innecesario. 

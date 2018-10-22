@@ -1,5 +1,5 @@
 \section{Regresión Lineal}
-La regresión lineal es el punto de entrada más sencillo de entender y aplicar en la Ciencia de Datos. Parte de esto se debe a que la regresión lineal es aplicable en muchos casos a una gran gama de problemas de predicción en los cuales el científico de datos cuenta con una base de datos o juego de datos lo suficientemente grande y accesible para entrenar un modelo \cite{daroczi}. La segunda razón es que un modelo bien entrenado de regresión lineal por lo general nos da una respuesta con cierto grado de precisión que da por cerrado el caso \cite{leek}.
+La regresión lineal es el punto de entrada más sencillo de entender y aplicar en la Ciencia de Datos. Parte de esto se debe a que la regresión lineal es aplicable en muchos casos a una gran gama de problemas de predicción en los cuales el científico de datos cuenta con una base de datos o juego de datos lo suficientemente grande y accesible para entrenar un modelo \cite{daroczi}. La segunda razón es que un modelo bien entrenado de regresión lineal por lo general nos da una respuesta con cierto grado de precisión que da por cerrado el caso \cite{leek}. 
 
 El concepto en sí es relativamente sencillo de abstraer y explicar. En una visualización de datos donde un valor $y$ se corresponde con alguna relación del valor $x$, para cada $x$ y $y$, es posible trazar una línea que en cierta forma sea representativa del valor de predicción de $y$ para cada $x$. Esta línea puede no ser perfecta, o puede dejar muchos puntos sin una relación válida (a menos en el papel de gráfico) pero nos da una idea aproximada de la tendencia y evolución de los datos. \\
 
@@ -26,23 +26,23 @@ Dentro del aprendizaje automatizado la regresión tiene su propia interpretació
 	y = g(x \mid \theta)
 \end{equation}
 
-donde $g(.)$ es el modelo y $\theta$ son sus parámetros. $Y$ es un número dentro de una regresión y $g(.)$ es la función de la regresión. El programa de aprendizaje automatizado optimiza los parámetros $\theta$ de forma que el error de aproximación sea mínimo, o en otras palabras, que los valores estimados sean los más cercanos a los valores reales del juego de entrenamiento.
+donde $g(.)$ es el modelo y $\theta$ son sus parámetros. $Y$ es un número dentro de una regresión y $g(.)$ es la función de la regresión. El programa de aprendizaje automatizado optimiza los parámetros $\theta$ de forma que el error de aproximación sea mínimo, o en otras palabras, que los valores estimados sean los más cercanos a los valores reales del juego de entrenamiento. 
 
 Los parámetros $\beta_{0}$ y $\beta_{1}$ determinan el punto en el que la función intercepta la la ordenada y la pendiente de la función. Podemos profundizar estos dos puntos aún más:
 \begin{itemize}
-	\item el punto de intercepción es la predicción del valor de $y$ cuando $x=0$.
+	\item el punto de intercepción es la predicción del valor de $y$ cuando $x=0$. 
     \item la pendiente $\beta_{1}$ representa la predicción del aumento de $y$ con cada unidad que incrementa $x$
 \end{itemize}
 
-Notemos que las observaciones no están dispuestas en una línea recta, sino que se encuentran dispersas alrededor de esta. Debemos pensar de cada observación $\beta_{0} + \beta_{1}x_{i}$ como la parte sistemática del modelo, y $\epsilon_i$ como el error aleatorio. Este margen de error no es un error per se, pero una desviación del modelo lineal \cite{hyndman}. Asumimos que el factor de error cumple con los siguientes requisitos.
+Notemos que las observaciones no están dispuestas en una línea recta, sino que se encuentran dispersas alrededor de esta. Debemos pensar de cada observación $\beta_{0} + \beta_{1}x_{i}$ como la parte sistemática del modelo, y $\epsilon_i$ como el error aleatorio. Este margen de error no es un error per se, pero una desviación del modelo lineal \cite{hyndman}. Asumimos que el factor de error cumple con los siguientes requisitos. 
 
 \begin{enumerate}
-  \item tiene media cero
-  \item no contiene autocorrelación
-  \item no está relacionado con la variable predictor
+  \item Tiene media cero
+  \item No contiene autocorrelación
+  \item No está relacionado con la variable predictor
 \end{enumerate}
 
-Se espera que la distribución de los errores sea normal con varianza constante para producir pronósticos precisos.
+Se espera que la distribución de los errores sea normal con varianza constante para producir pronósticos precisos. 
 
 \subsection{Estimación con Mínimos Cuadrados}
 En la práctica se tiene un juego de valores y no los mismos de $\beta_{0}$ y $\beta_{1}$. Estos necesitan ser calculados en base al juego de datos en lo que se conoce como el calce o ajuste de la linea a través de los datos. Hay muchas posibles líneas que calcen en el modelo con diferentes valores para $\beta_{0}$ y $\beta_{1}$. El método de mínimos cuadrados provee una forma de seleccionar valores para $\beta_{0}$ y $\beta_{1}$ minimizando la suma del error cuadrático \cite{estadisticaBasica}:
@@ -72,9 +72,9 @@ Aunque el análisis de la regresión lineal y la derivación del coeficiente de 
 \end{itemize}
 
 \subsection{Regresión Multi-Variable}
-Para Downey \cite{thinkStats}, la regresión múltiple es aquella en la cual se utilizan múltiples variables independientes, pero una sola variable dependiente.
+Para Downey \cite{thinkStats}, la regresión múltiple es aquella en la cual se utilizan múltiples variables independientes, pero una sola variable dependiente. 
 
-El Dr. Tattar de la Universidad de Bangalore define que el modelo de regresión línea simple no es realista ni aplicable al mundo practico \cite{narayanachar}. Para aplicaciones más reales, es casi obligatorio el uso de modelos de regresión múltiple, en los cuales varias variables independientes se conjugan como parámetros de regresión.
+El Dr. Tattar de la Universidad de Bangalore define que el modelo de regresión línea simple no es realista ni aplicable al mundo practico \cite{narayanachar}. Para aplicaciones más reales, es casi obligatorio el uso de modelos de regresión múltiple, en los cuales varias variables independientes se conjugan como parámetros de regresión. 
 
 La regresión multivariable no es un tema mayormente complicado en teoría cómo lo es en llevar a la práctica. No todos los ejemplos de regresiones multivariables nos van a llevar a funciones lineales, sino que estamos tocando el limite entre regresión lineal y métodos de regresión general con funciones no lineales que pueden necesitar de transformaciones matemáticas para obtener un modelo apropiado \cite{daroczi}. Aquí también se explica la selección de un modelo con múltiples variables independientes y cuales conviene seleccionar \cite{viswanathan}.
 
@@ -106,25 +106,25 @@ Llegar a un modelo de regresión lineal no significa llegar a una solución ópt
 Evidentemente, la simple observación del diagrama de dispersión proporciona una idea cualitativa del grado de correlación. Sin embargo, es claramente más útil disponer de una medida cuantitativa de dicha correlación. Una primera cuantificación de la correlación se puede obtener a partir de la covarianza. Puede observarse que, en el caso de una clara correlación lineal positiva, la mayor parte de los puntos de datos estarán en el segundo y tercer cuadrante, de forma que, cuando $x_i$ sea mayor que $\bar{x}$, también $y_i$ tenderá a ser mayor que $y$, y al revés. Por tanto, la mayoría de los términos del sumatorio serán positivos y la covarianza alcanzará un valor alto. Por el mismo argumento, si existe correlación lineal negativa, la mayoría de los términos del sumatorio serán negativos y la covarianza tendrá un valor alto y negativo. En el caso de que no hubiese correlación y los puntos estuviesen repartidos en los cuatro cuadrantes, aparecerían por igual términos positivos y negativos, que se anularían dando un valor muy bajo, en valor absoluto, de la covarianza. En resumen, la covarianza es una medida de la correlación lineal entre las dos variables \cite{estadisticaBasica}.
 
 \subsubsection{R - Coeficiente de Correlación de Pearson}
-La utilidad de la covarianza como medida de correlación está limitada por el hecho de que depende de las unidades de medida en que se trabaje. Para construir una medida adimensional de la correlación habrá que dividir la varianza por un término con sus mismas dimensiones. De esta forma, se define el \emph{coeficiente de correlación lineal R} como el cociente entre la covarianza y las desviaciones típicas (o raíces cuadradas de las varianzas) de $x$ e $y$ \cite{estadisticaBasica}.
+La utilidad de la covarianza como medida de correlación está limitada por el hecho de que depende de las unidades de medida en que se trabaje. Para construir una medida adimensional de la correlación habrá que dividir la varianza por un término con sus mismas dimensiones. De esta forma, se define el \emph{coeficiente de correlación lineal R} como el cociente entre la covarianza y las desviaciones típicas (o raíces cuadradas de las varianzas) de $x$ e $y$ \cite{estadisticaBasica}. 
 
 El coeficiente de correlación también se conoce como \emph{coeficiente de correlación de Pearson} mide la relación lineal entre dos variables aleatorias cuantitativas. La correlación de Pearson es independiente de la escala de medida de las variables, lo que permite tener comparaciones mucho más objetivas independiente del fenómeno estudiado. De manera menos formal, podemos definir el coeficiente de correlación de Pearson como un índice que puede utilizarse para medir el grado de relación de dos variables siempre y cuando ambas sean cuantitativas \cite{intoStats7}.
 
 \begin{equation}
-    R = \frac{\Sigma(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\Sigma(x_i - \bar{x})^2\Sigma(y_i - \bar{y})^2}}
+    R = \frac{\Sigma(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\Sigma(x_i - \bar{x})^2\Sigma(y_i - \bar{y})^2}}    
 \end{equation}
 
 \subsubsection{R2 - Coeficiente de Determinación}
-El coeficiente de determinación - denominado \(R^{2}\) - es un estadístico usado en el contexto de un modelo estadístico cuyo principal propósito es predecir resultados futuros o probar una hipótesis. El coeficiente determina la calidad del modelo para replicar los resultados, y la proporción de variación de los resultados que puede explicarse por el modelo \cite{daroczi}. El coeficiente de determinación, puede interpretarse como la fracción de la variación total que se explica por la recta de regresión. Así, un coeficiente de correlación próximo a +1 o -1 indica que casi todas las variaciones encontradas en $y$ son explicadas por la recta (teniéndose una buena correlación), mientras que si $R$ es 0, la recta de regresión apenas sirve para explicar las variaciones y la correlación lineal será pobre. Como ejemplo, si $R = 0.95$, podemos deducir que aproximadamente el 90\% de las variaciones de $y$ son debidas a la regresi'on lineal.
+El coeficiente de determinación - denominado \(R^{2}\) - es un estadístico usado en el contexto de un modelo estadístico cuyo principal propósito es predecir resultados futuros o probar una hipótesis. El coeficiente determina la calidad del modelo para replicar los resultados, y la proporción de variación de los resultados que puede explicarse por el modelo \cite{daroczi}. El coeficiente de determinación, puede interpretarse como la fracción de la variación total que se explica por la recta de regresión. Así, un coeficiente de correlación próximo a +1 o -1 indica que casi todas las variaciones encontradas en $y$ son explicadas por la recta (teniéndose una buena correlación), mientras que si $R$ es 0, la recta de regresión apenas sirve para explicar las variaciones y la correlación lineal será pobre. Como ejemplo, si $R = 0.95$, podemos deducir que aproximadamente el 90\% de las variaciones de $y$ son debidas a la regresi'on lineal. 
 
 En el caso de regresión lineal, la formula del coeficiente de determinación sigue la siguiente forma:
 
 \begin{equation}
-    R^{2} = \frac{\sigma^{2}_{XY}}{\sigma^{2}_{X}\sigma^{2}_{Y}}
+    R^{2} = \frac{\sigma^{2}_{XY}}{\sigma^{2}_{X}\sigma^{2}_{Y}}    
 \end{equation}
 
 \subsection{Valor de p}
-La evaluación de una hipótesis emerge como un componente crucial en la toma de decisión cuando dos opciones compiten como solución de un problema. La evaluación estadística de la hipótesis provee un marco formal y guías para hacer tal selección \cite{thinkStats}. Una hipótesis estadística es una afirmación o conjetura que se hace sobre una, o varias, características de una población. Ejemplos de dichas afirmaciones incluyen el que la media de una población tenga un determinado valor, o que los valores de una variable presenten menor dispersión en torno a un valor medio en una población comparada con la dispersión en otra, etc. Evidentemente, la forma m´as directa de comprobar tales hipótesis sería estudiando todos y cada uno de los elementos de la población. Sin embargo, frecuentemente esto no es posible (la población podría ser incluso infinita), por lo que el contraste de la hipótesis ha de basarse en una muestra, que supondremos aleatoria, de la población en estudio. Al no estudiarse la población entera, nunca podremos estar completamente seguros de si la hipótesis realizada es verdadera o falsa. Es decir, siempre existe la probabilidad de llegar a una conclusión equivocada \cite{estadisticaBasica}.
+La evaluación de una hipótesis emerge como un componente crucial en la toma de decisión cuando dos opciones compiten como solución de un problema. La evaluación estadística de la hipótesis provee un marco formal y guías para hacer tal selección \cite{thinkStats}. Una hipótesis estadística es una afirmación o conjetura que se hace sobre una, o varias, características de una población. Ejemplos de dichas afirmaciones incluyen el que la media de una población tenga un determinado valor, o que los valores de una variable presenten menor dispersión en torno a un valor medio en una población comparada con la dispersión en otra, etc. Evidentemente, la forma más directa de comprobar tales hipótesis sería estudiando todos y cada uno de los elementos de la población. Sin embargo, frecuentemente esto no es posible (la población podría ser incluso infinita), por lo que el contraste de la hipótesis ha de basarse en una muestra, que supondremos aleatoria, de la población en estudio. Al no estudiarse la población entera, nunca podremos estar completamente seguros de si la hipótesis realizada es verdadera o falsa. Es decir, siempre existe la probabilidad de llegar a una conclusión equivocada \cite{estadisticaBasica}.
 
 Una prueba estadística de hipótesis está formada de cinco partes \cite{mendehall}:
 
@@ -151,3 +151,4 @@ La decisión de rechazar o aceptar la hipótesis nula está basada en informaci�
 \end{itemize}
 
 Cualquiera de estas mediciones, o ambas, actúan como quienes toman decisiones para el investigador al decidir si rechazar o aceptar H0 \cite{mendehall}. Un valor de $p$ por debajo de 0.05 puede interpretarse como que la regresión es estadísticamente significativa \cite{daroczi}.
+

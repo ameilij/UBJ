@@ -7,6 +7,9 @@
 \usepackage{graphicx}
 \graphicspath{ {images/} }
 \usepackage{booktabs}
+\usepackage{longtable}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{lscape}
 \usepackage{multirow}
 \usepackage{listings}
 \usepackage{color}
@@ -17,6 +20,7 @@
 \usepackage{lipsum}
 %\usepackage{helvet}
 \usepackage{caption}
+\usepackage{supertabular}
 \usepackage{booktabs}
 \usepackage{adjustbox}
 \usepackage{graphicx}
@@ -29,26 +33,26 @@
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
+ 
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
+    backgroundcolor=\color{white},   
+    commentstyle=\color{darkgray},
+    keywordstyle=\color{darkgray},
     numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
+    stringstyle=\color{codegray},
     basicstyle=\footnotesize,
-    breakatwhitespace=false,
-    breaklines=true,
-    captionpos=b,
-    keepspaces=true,
-    numbers=left,
-    numbersep=5pt,
-    showspaces=false,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
     showstringspaces=false,
-    showtabs=false,
+    showtabs=false,                  
     tabsize=2
 }
-
+ 
 \lstset{style=mystyle}
 
 %% LANGUAGE SELECTION FOR SPANISH
@@ -107,13 +111,14 @@
 \begin{spacing}{1.0}
 \include{introduccion}
 \include{protocoloInvestigacion}
-\include{fundamentoTeorico}
+\include{fundamentoTeorico}                                          
 \include{economiaColombia}
 \include{regresionLineal}
 \include{seriesTiempo}
 \include{cienciaDatos}
 \include{aprendizajeAutomatizado}
 \include{modelosEnsamblados}
+\include{operacionalizacion}
 \include{marcoConceptual}
 \include{marcoMetodologico}
 \include{resultados}
@@ -127,5 +132,4 @@
 \include{otrasFuentes}
 \include{anexos}
 \end{spacing}
-
 \end{document}
