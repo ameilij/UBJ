@@ -79,7 +79,7 @@ testVector <- data.frame(valores_prediccion, valores_reales)
 ggplot(aes(x = valores_prediccion, y = valores_reales), data = testVector) + 
   geom_point(alpha = 0.05)  + geom_smooth(method='lm',formula=y~x, colour = "yellow") +
   labs(x = "Valores Prediccion", y = "Valores Reales", 
-       title = "Valores Reales vs. Valores Prediccion Data Validacion Regresion Multivariable")
+       title = "Valores Reales vs. Valores Prediccion Data Validacion Regresion Multivariable") + theme(plot.title = element_text(hjust = 0.5))
 
 # Test individual de valores aleatorios comparativos
 indices_aleatorios <-  sample.int(dim(inTrain)[1], 20)
@@ -95,6 +95,6 @@ residuales <- modelFit$finalModel$residuals
 indice <- seq(1:2047)
 data_residuales <- data.frame(residuales, indice)
 ggplot(aes(y = residuales, x = indice), data = data_residuales) + geom_jitter(alpha = 1/05) +
-  labs(y = "Error Aleatorio", x = "", title = "Valores Residuales")
+  labs(y = "Error Aleatorio", x = "", title = "Valores Residuales") + theme(plot.title = element_text(hjust = 0.5))
 
 
